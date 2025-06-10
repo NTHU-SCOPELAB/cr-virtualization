@@ -1,13 +1,19 @@
 # Summary
 
-# I. Virtual Machine Live Migration
+# HW1. Virtual Machine Live Migration
 - [Objective](./live_migration/objective.md)
 - [Setup Environment](./live_migration/setup-environment.md)
+    - [VMWare Workstation](./live_migration/setup-environment/vmware-workstation.md)
+    - [VirtualBox](./live_migration/setup-environment/virtualbox.md)
+    - [QEMU](./live_migration/setup-environment/qemu.md)
 - [Live Migration](./live_migration/live-migration.md)
+    - [Task 1: Setting up `guest1`](./live_migration/live-migration/task1.md)
+    - [Task 2: Setting up `guest2`](./live_migration/live-migration/task2.md)
+    - [Task 3: Migrate from `guest1` to `guest2`](./live_migration/live-migration/task3.md)
 - [Assignment](./live_migration/assignment.md)
 
 ---
-# II. Docker and Kubernetes
+# HW2. Docker and Kubernetes
 - [Objective](./docker_kubernetes/objective.md)
 - [Setup Environment](./docker_kubernetes/setup-environment.md)
 - [Docker](./docker_kubernetes/docker.md)
