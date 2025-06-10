@@ -167,43 +167,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="task-1-setting-up-guest1"><a class="header" href="#task-1-setting-up-guest1">Task 1: Setting up guest1</a></h1>
-<h2 id="1-enter-the-following-command-into-the-terminal"><a class="header" href="#1-enter-the-following-command-into-the-terminal">1. Enter the following command into the terminal:</a></h2>
+<h3 id="1-enter-the-following-command-into-the-terminal"><a class="header" href="#1-enter-the-following-command-into-the-terminal">1. Enter the following command into the terminal:</a></h3>
 <pre><code class="language-bash">sudo apt update -y
-sudo apt install vim qemu-kvm nfs-kernel-server net-tools
+sudo apt install -y vim qemu-kvm nfs-kernel-server net-tools
 </code></pre>
-<h2 id="2-before-launching-qemu-on-the-first-guest-vm-obtain-the-ip-address-of-this-vm"><a class="header" href="#2-before-launching-qemu-on-the-first-guest-vm-obtain-the-ip-address-of-this-vm">2. Before launching QEMU on the first guest VM, obtain the IP address of this VM.</a></h2>
+<h3 id="2-before-launching-qemu-on-the-first-guest-vm-obtain-the-ip-address-of-this-vm"><a class="header" href="#2-before-launching-qemu-on-the-first-guest-vm-obtain-the-ip-address-of-this-vm">2. Before launching QEMU on the first guest VM, obtain the IP address of this VM.</a></h3>
 <pre><code class="language-bash">ip a
 </code></pre>
 <p>For example:
 <img src="../../assets/2025-06-10-22-20-48.png" alt="" /></p>
-<h2 id="3-create-a-qemu-image-file"><a class="header" href="#3-create-a-qemu-image-file">3. Create a QEMU image file:</a></h2>
+<h3 id="3-create-a-qemu-image-file"><a class="header" href="#3-create-a-qemu-image-file">3. Create a QEMU image file:</a></h3>
 <pre><code class="language-bash">qemu-img create -f qcow2 ubuntu.qcow2 10G
 </code></pre>
-<h2 id="4-create-a-new-directory-in-mnt-and-modify-its-ownership-and-permissions"><a class="header" href="#4-create-a-new-directory-in-mnt-and-modify-its-ownership-and-permissions">4. Create a new directory in <code>/mnt</code> and modify its ownership and permissions:</a></h2>
+<h3 id="4-create-a-new-directory-in-mnt-and-modify-its-ownership-and-permissions"><a class="header" href="#4-create-a-new-directory-in-mnt-and-modify-its-ownership-and-permissions">4. Create a new directory in <code>/mnt</code> and modify its ownership and permissions:</a></h3>
 <pre><code class="language-bash">sudo mkdir -p /mnt/nfs
 sudo chown nobody:nogrouup /mnt/nfs
 sudo chmod 777 /mnt/nfs
 </code></pre>
-<h2 id="5-move-the-qemu-image-file-you-just-created-into-the-new-directory"><a class="header" href="#5-move-the-qemu-image-file-you-just-created-into-the-new-directory">5. Move the QEMU image file you just created into the new directory:</a></h2>
+<h3 id="5-move-the-qemu-image-file-you-just-created-into-the-new-directory"><a class="header" href="#5-move-the-qemu-image-file-you-just-created-into-the-new-directory">5. Move the QEMU image file you just created into the new directory:</a></h3>
 <pre><code class="language-bash">mv ubuntu.qcow2 /mnt/nfs
 </code></pre>
-<h2 id="6-edit-the-file-at-etcexports-with-superuser-privileges"><a class="header" href="#6-edit-the-file-at-etcexports-with-superuser-privileges">6. Edit the file at <code>/etc/exports</code> with superuser privileges:</a></h2>
+<h3 id="6-edit-the-file-at-etcexports-with-superuser-privileges"><a class="header" href="#6-edit-the-file-at-etcexports-with-superuser-privileges">6. Edit the file at <code>/etc/exports</code> with superuser privileges:</a></h3>
 <pre><code class="language-bash">sudo vim /etc/exports
 </code></pre>
-<h2 id="7-add-the-following-line-to-the-end-of-the-exports-file-and-save-it"><a class="header" href="#7-add-the-following-line-to-the-end-of-the-exports-file-and-save-it">7. Add the following line to the end of the exports file and save it:</a></h2>
+<h3 id="7-add-the-following-line-to-the-end-of-the-exports-file-and-save-it"><a class="header" href="#7-add-the-following-line-to-the-end-of-the-exports-file-and-save-it">7. Add the following line to the end of the exports file and save it:</a></h3>
 <pre><code class="language-bash">/mnt/nfs *(rw,sync,no_subtree_check,no_root_squash)
 </code></pre>
-<h2 id="8-return-to-the-terminal-and-enter-this-command-to-update-the-exports-file"><a class="header" href="#8-return-to-the-terminal-and-enter-this-command-to-update-the-exports-file">8. Return to the terminal and enter this command to update the exports file:</a></h2>
+<h3 id="8-return-to-the-terminal-and-enter-this-command-to-update-the-exports-file"><a class="header" href="#8-return-to-the-terminal-and-enter-this-command-to-update-the-exports-file">8. Return to the terminal and enter this command to update the exports file:</a></h3>
 <pre><code class="language-bash">sudo exportfs -arv
 </code></pre>
-<h2 id="9-launch-qemu-to-simulate-a-running-process-on-the-virtual-machine"><a class="header" href="#9-launch-qemu-to-simulate-a-running-process-on-the-virtual-machine">9. Launch QEMU to simulate a running process on the virtual machine:</a></h2>
+<h3 id="9-launch-qemu-to-simulate-a-running-process-on-the-virtual-machine"><a class="header" href="#9-launch-qemu-to-simulate-a-running-process-on-the-virtual-machine">9. Launch QEMU to simulate a running process on the virtual machine:</a></h3>
 <pre><code class="language-bash">sudo qemu-system-x86_64 \
     -cpu host -enable-kvm -m 2G -smp 1 \
     -drive if=virtio,format=qcow2,file=/mnt/nfs/ubuntu.qcow2 \
     -monitor telnet:127.0.0.1:5500,server,nowait
 </code></pre>
-<h2 id="10-a-window-similar-to-this-will-then-appear"><a class="header" href="#10-a-window-similar-to-this-will-then-appear">10. A window similar to this will then appear:</a></h2>
-<p><img src="../../assets/2025-06-10-22-25-39.png" alt="" /></p>
+<p>A window similar to this will then appear:
+<img src="../../assets/2025-06-10-22-25-39.png" alt="" /></p>
 
                     </main>
 

@@ -167,6 +167,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="task-3-migrate-from-guest1-to-guest2"><a class="header" href="#task-3-migrate-from-guest1-to-guest2">Task 3: Migrate from guest1 to guest2</a></h1>
+<h3 id="1-return-the-first-guest-vm-open-a-new-terminal-tab-and-enter-the-following-command"><a class="header" href="#1-return-the-first-guest-vm-open-a-new-terminal-tab-and-enter-the-following-command">1. Return the first guest VM, open a new terminal tab, and enter the following command:</a></h3>
+<pre><code class="language-bash">telnet 127.0.0.1 5500
+</code></pre>
+<h3 id="2-upon-the-new-command-prompt-issue-the-following-command-to-initiate-the-live-migration-process"><a class="header" href="#2-upon-the-new-command-prompt-issue-the-following-command-to-initiate-the-live-migration-process">2. Upon the new command prompt, issue the following command to initiate the live migration process:</a></h3>
+<pre><code class="language-bash">migrate -d tcp:&lt;replace_with_guest2_ip&gt;:4400
+</code></pre>
+<h3 id="3-show-the-migration-info"><a class="header" href="#3-show-the-migration-info">3. Show the migration info:</a></h3>
+<pre><code class="language-bash">info migrate
+</code></pre>
+<h3 id="4-the-screen-of-the-qemu-window-on-guest2-should-now-appear-as-follows"><a class="header" href="#4-the-screen-of-the-qemu-window-on-guest2-should-now-appear-as-follows">4. The screen of the QEMU window on <code>guest2</code> should now appear as follows:</a></h3>
+<p><img src="../../assets/2025-06-10-22-57-56.png" alt="" /></p>
+<p>This indicates that you've successfully completed the live migration of the virtual machine.</p>
 
                     </main>
 

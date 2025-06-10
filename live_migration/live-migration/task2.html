@@ -167,6 +167,26 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="task-2-setting-up-guest2"><a class="header" href="#task-2-setting-up-guest2">Task 2: Setting up guest2</a></h1>
+<h3 id="1-enter-the-following-commands-into-the-terminal"><a class="header" href="#1-enter-the-following-commands-into-the-terminal">1. Enter the following commands into the terminal:</a></h3>
+<pre><code class="language-bash">sudo apt update -y
+sudo apt install -y qemu-kvm net-tools nfs-common
+</code></pre>
+<h3 id="2-before-launching-qemu-on-the-second-guest-vm-obtain-the-ip-address-of-this-vm"><a class="header" href="#2-before-launching-qemu-on-the-second-guest-vm-obtain-the-ip-address-of-this-vm">2. Before launching QEMU on the second guest VM, obtain the IP address of this VM.</a></h3>
+<pre><code class="language-bash">ip a
+</code></pre>
+<p><img src="../../assets/2025-06-10-22-20-48.png" alt="" /></p>
+<h3 id="3-enter-the-following-commands-into-the-terminal-to-mount-nfs-service"><a class="header" href="#3-enter-the-following-commands-into-the-terminal-to-mount-nfs-service">3. Enter the following commands into the terminal to mount NFS service:</a></h3>
+<pre><code class="language-bash">sudo mkdir -p /mnt/nfs
+sudo mount -t nfs &lt;replace_with_guest1_ip&gt;:/mnt/nfs /mnt/nfs&gt;
+</code></pre>
+<h3 id="4-luanch-qemu-on-the-second-vm-to-prepare-for-the-incoming-live-virtual-machine-migration"><a class="header" href="#4-luanch-qemu-on-the-second-vm-to-prepare-for-the-incoming-live-virtual-machine-migration">4. Luanch QEMU on the second VM to prepare for the incoming live virtual machine migration:</a></h3>
+<pre><code class="language-bash">sudo qemu-system-x86_64 \
+    -cpu host -enable-kvm -m 2G -smp 1 \
+    -drive if=virtio,format=qcow2,file=/mnt/nfs/ubuntu.qcow2 \
+    -incoming tcp:0:4400
+</code></pre>
+<p>A window similar to this will then appear:
+<img src="../../assets/2025-06-10-22-51-51.png" alt="" /></p>
 
                     </main>
 
