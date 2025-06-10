@@ -171,8 +171,122 @@
 <h2 id="live-migration"><a class="header" href="#live-migration">Live Migration</a></h2>
 <p>Live Migration is a crucial feature in virtualization technology that allows the transfer of a running virtual machine (VM) from one physical host to another without interrupting the VM's operation or services.</p>
 <h2 id="our-homework-architecture"><a class="header" href="#our-homework-architecture">Our Homework Architecture:</a></h2>
+<p><img src="live_migration/../../../assets/2025-06-10-21-20-15.png" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="setup-environment"><a class="header" href="#setup-environment">Setup Environment</a></h1>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<ol>
+<li>We strongly suggests that your computer have at least 8GB of RAM and 30GB+ of storage space.</li>
+<li>First, use a hypervisor software to create two virtual machines on your computer.</li>
+</ol>
+<ul>
+<li>If you’re using Linux : QEMU is recommended.</li>
+<li>If you’re using Windows or MacOS : VMWare Workstation or VMWare Fusion are recommended.</li>
+</ul>
+<p>The download link for VMware's software can be elusive, so you might need to put in some effort to locate it.</p>
+<ol start="3">
+<li>Next, go to download Ubuntu-24.04 desktop version as your Guest OS. It’s about 5.9G.
+You can grab it from here: <a href="https://free.nchc.org.tw/ubuntu-cd/24.04/ubuntu-24.04.2-desktop-amd64.iso">download link</a></li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vmware-workstation"><a class="header" href="#vmware-workstation">VMWare Workstation</a></h1>
+<h3 id="1-assuming-youve-downloaded-the-vmware-workstation-installer-and-ubuntu-image-file"><a class="header" href="#1-assuming-youve-downloaded-the-vmware-workstation-installer-and-ubuntu-image-file">1. Assuming you've downloaded the VMWare Workstation installer and Ubuntu image file.</a></h3>
+<h3 id="2-install-the-vmware-workstation"><a class="header" href="#2-install-the-vmware-workstation">2. Install the VMWare Workstation.</a></h3>
+<h3 id="3-click-create-a-new-virtual-machine-and-proceed-with-the-creation-process"><a class="header" href="#3-click-create-a-new-virtual-machine-and-proceed-with-the-creation-process">3. Click "Create a New Virtual Machine" and proceed with the creation process.</a></h3>
+<p><img src="live_migration/setup-environment/../../assets/2025-06-10-21-39-17.png" alt="" /></p>
+<h3 id="4-use-the-ubuntu-image-youve-already-downloaded-use-the-version-you-downloaded-not-2004-in-the-image"><a class="header" href="#4-use-the-ubuntu-image-youve-already-downloaded-use-the-version-you-downloaded-not-2004-in-the-image">4. Use the Ubuntu image you've already downloaded. (Use the version you downloaded, not 20.04 in the image)</a></h3>
+<p><img src="live_migration/setup-environment/../../assets/2025-06-10-21-39-43.png" alt="" /></p>
+<h3 id="5-click-customize-hardware"><a class="header" href="#5-click-customize-hardware">5. Click "Customize Hardware..."</a></h3>
+<p><img src="live_migration/setup-environment/../../assets/2025-06-10-21-39-59.png" alt="" /></p>
+<h3 id="6-go-to-processors-tab-and-enable-virtualize-intel-vt-xept-or-amd-vrvi"><a class="header" href="#6-go-to-processors-tab-and-enable-virtualize-intel-vt-xept-or-amd-vrvi">6. Go to "Processors" tab and enable "Virtualize Intel VT-x/EPT or AMD-V/RVI".</a></h3>
+<p><img src="live_migration/setup-environment/../../assets/2025-06-10-21-40-26.png" alt="" /></p>
+<h3 id="7-repeat-the-above-steps-to-create-a-second-virtual-machine"><a class="header" href="#7-repeat-the-above-steps-to-create-a-second-virtual-machine">7. Repeat the above steps to create a second virtual machine.</a></h3>
+<h3 id="8-boot-each-virtual-machine-and-complete-the-ubuntu-installation-process"><a class="header" href="#8-boot-each-virtual-machine-and-complete-the-ubuntu-installation-process">8. Boot each virtual machine and complete the Ubuntu installation process.</a></h3>
+<h3 id="9-after-completing-the-installation-process-open-the-terminal-from-your-applications-menu"><a class="header" href="#9-after-completing-the-installation-process-open-the-terminal-from-your-applications-menu">9. After completing the installation process, open the terminal from your Applications menu.</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="virtualbox"><a class="header" href="#virtualbox">VirtualBox</a></h1>
+<p>Using VirtualBox is similar to using VMWare Workstation, but you need to enable nested virtualization.</p>
+<h2 id="use-gui-to-enable-nested-virtualization"><a class="header" href="#use-gui-to-enable-nested-virtualization">Use GUI to enable Nested Virtualization</a></h2>
+<p><img src="live_migration/setup-environment/../../assets/2025-06-10-21-52-30.png" alt="" /></p>
+<h2 id="use-command-line-to-enable-nested-virtualization"><a class="header" href="#use-command-line-to-enable-nested-virtualization">Use Command Line to Enable Nested Virtualization</a></h2>
+<ol>
+<li>Go to the directory of the VirtualBox you installed.</li>
+<li>Open Command Prompt right in the place.</li>
+<li>Enter the command below to enable nested virtualization:
+<pre><code class="language-bash">.\VBoxManage.exe modifyvm "VM Name" --nested-hw-virt on
+</code></pre>
+Replace <code>"VM Name"</code> with the name of your virtual machine.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="qemu"><a class="header" href="#qemu">QEMU</a></h1>
+<h3 id="1-first-create-the-disk-image-for-guest1"><a class="header" href="#1-first-create-the-disk-image-for-guest1">1. First, create the disk image for <code>guest1</code>.</a></h3>
+<pre><code class="language-bash">qemu-img create -f qcow2 guest1.qcow2 20G
+</code></pre>
+<h3 id="2-run-guest1-and-complete-the-ubuntu-installation-process"><a class="header" href="#2-run-guest1-and-complete-the-ubuntu-installation-process">2. Run <code>guest1</code> and complete the Ubuntu installation process.</a></h3>
+<pre><code class="language-bash">sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
+    -drive if=virtio,format=qcow2,file=guest1.qcow2 \
+    -nic bridge,br=br0,model=virtio-net-pci,mac=52:54:00:40:C9:01 \
+    -boot d -cdrom &lt;your_ubuntu_img_file_path&gt;.iso \
+    -vnc :1
+</code></pre>
+<ul>
+<li>Using any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5901 (e.g. : 192.168.7.102:5901 or 127.0.0.1:5901), and complete the installation process.</li>
+<li>After Ubuntu installation is complete, remove the <code>-boot d -cdrom &lt;your_img_file_path&gt;.iso</code> part from the above command and run <code>guest1</code> again.</li>
+</ul>
+<h3 id="3-repeat-the-same-steps-for-guest2"><a class="header" href="#3-repeat-the-same-steps-for-guest2">3. Repeat the same steps for <code>guest2</code></a></h3>
+<pre><code class="language-bash">qemu-img create -f qcow2 guest2.qcow2 20G
+sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
+    -drive if=virtio,format=qcow2,file=guest2.qcow2 \
+    -nic bridge,br=br0,model=virtio-net-pci,mac=52:54:00:40:C9:02 \
+    -boot d -cdrom &lt;your_ubuntu_img_file_path&gt;.iso \
+    -vnc :1
+</code></pre>
+<ul>
+<li>
+<p>Using any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5902 (e.g. : 192.168.7.102:5902 or 127.0.0.1:5902), and complete the installation process.</p>
+</li>
+<li>
+<p>After Ubuntu installation is complete, remove the <code>-boot d -cdrom &lt;your_img_file_path&gt;.iso</code> part from the above command and run <code>guest2</code> again.</p>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="live-migration-1"><a class="header" href="#live-migration-1">Live Migration</a></h1>
+<p>In this section, you need to demonstrate the above steps of the presentation through a screen recording, showing how you perform live migration on VMs using the framework we provided.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="task-1-setting-up-guest1"><a class="header" href="#task-1-setting-up-guest1">Task 1: Setting up guest1</a></h1>
+<h2 id="1-enter-the-following-command-into-the-terminal"><a class="header" href="#1-enter-the-following-command-into-the-terminal">1. Enter the following command into the terminal:</a></h2>
+<pre><code class="language-bash">sudo apt update -y
+sudo apt install vim qemu-kvm nfs-kernel-server net-tools
+</code></pre>
+<h2 id="2-before-launching-qemu-on-the-first-guest-vm-obtain-the-ip-address-of-this-vm"><a class="header" href="#2-before-launching-qemu-on-the-first-guest-vm-obtain-the-ip-address-of-this-vm">2. Before launching QEMU on the first guest VM, obtain the IP address of this VM.</a></h2>
+<pre><code class="language-bash">ip a
+</code></pre>
+<p>For example:
+<img src="live_migration/live-migration/../../assets/2025-06-10-22-20-48.png" alt="" /></p>
+<h2 id="3-create-a-qemu-image-file"><a class="header" href="#3-create-a-qemu-image-file">3. Create a QEMU image file:</a></h2>
+<pre><code class="language-bash">qemu-img create -f qcow2 ubuntu.qcow2 10G
+</code></pre>
+<h2 id="4-create-a-new-directory-in-mnt-and-modify-its-ownership-and-permissions"><a class="header" href="#4-create-a-new-directory-in-mnt-and-modify-its-ownership-and-permissions">4. Create a new directory in <code>/mnt</code> and modify its ownership and permissions:</a></h2>
+<pre><code class="language-bash">sudo mkdir -p /mnt/nfs
+sudo chown nobody:nogrouup /mnt/nfs
+sudo chmod 777 /mnt/nfs
+</code></pre>
+<h2 id="5-move-the-qemu-image-file-you-just-created-into-the-new-directory"><a class="header" href="#5-move-the-qemu-image-file-you-just-created-into-the-new-directory">5. Move the QEMU image file you just created into the new directory:</a></h2>
+<pre><code class="language-bash">mv ubuntu.qcow2 /mnt/nfs
+</code></pre>
+<h2 id="6-edit-the-file-at-etcexports-with-superuser-privileges"><a class="header" href="#6-edit-the-file-at-etcexports-with-superuser-privileges">6. Edit the file at <code>/etc/exports</code> with superuser privileges:</a></h2>
+<pre><code class="language-bash">sudo vim /etc/exports
+</code></pre>
+<h2 id="7-add-the-following-line-to-the-end-of-the-exports-file-and-save-it"><a class="header" href="#7-add-the-following-line-to-the-end-of-the-exports-file-and-save-it">7. Add the following line to the end of the exports file and save it:</a></h2>
+<pre><code class="language-bash">/mnt/nfs *(rw,sync,no_subtree_check,no_root_squash)
+</code></pre>
+<h2 id="8-return-to-the-terminal-and-enter-this-command-to-update-the-exports-file"><a class="header" href="#8-return-to-the-terminal-and-enter-this-command-to-update-the-exports-file">8. Return to the terminal and enter this command to update the exports file:</a></h2>
+<pre><code class="language-bash">sudo exportfs -arv
+</code></pre>
+<h2 id="9-launch-qemu-to-simulate-a-running-process-on-the-virtual-machine"><a class="header" href="#9-launch-qemu-to-simulate-a-running-process-on-the-virtual-machine">9. Launch QEMU to simulate a running process on the virtual machine:</a></h2>
+<pre><code class="language-bash">sudo qemu-system-x86_64 \
+    -cpu host -enable-kvm -m 2G -smp 1 \
+    -drive if=virtio,format=qcow2,file=/mnt/nfs/ubuntu.qcow2 \
+    -monitor telnet:127.0.0.1:5500,server,nowait
+</code></pre>
+<h2 id="10-a-window-similar-to-this-will-then-appear"><a class="header" href="#10-a-window-similar-to-this-will-then-appear">10. A window similar to this will then appear:</a></h2>
+<p><img src="live_migration/live-migration/../../assets/2025-06-10-22-25-39.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="task-2-setting-up-guest2"><a class="header" href="#task-2-setting-up-guest2">Task 2: Setting up guest2</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="task-3-migrate-from-guest1-to-guest2"><a class="header" href="#task-3-migrate-from-guest1-to-guest2">Task 3: Migrate from guest1 to guest2</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="assignment"><a class="header" href="#assignment">Assignment</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="objective-1"><a class="header" href="#objective-1">Objective</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="setup-environment-1"><a class="header" href="#setup-environment-1">Setup Environment</a></h1>
