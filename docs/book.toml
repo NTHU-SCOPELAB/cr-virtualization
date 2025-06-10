@@ -3,3 +3,5 @@ authors = ["pedestrianlove"]
 language = "en"
 src = "src"
 title = "Virtualization Lab"
+
+default-theme = "rust"
