@@ -493,8 +493,80 @@ ping box2
 <li>Docker is more unsafe than virtual machine, please explain why and what's causing this issue. <em><strong>(10 points)</strong></em></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h1>
+<h3 id="description"><a class="header" href="#description">Description</a></h3>
+<p>In this task, you're required to create services using Kubernetes. We will use the image files from the previous phase to build our services and use the client container to communicate with the services.</p>
+<h3 id="you-need-to-figure-out-the-following-concept-in-the-process"><a class="header" href="#you-need-to-figure-out-the-following-concept-in-the-process">You need to figure out the following concept in the process:</a></h3>
+<ul>
+<li>The relation between <code>Deployment</code>, <code>Replica Set</code> and <code>Pod</code>.</li>
+<li>How pod management works in Kubernetes.</li>
+<li>How to expose an application with the <code>Service</code>.</li>
+<li>The difference between <code>ClusterIP</code>, <code>NodePort</code>, and <code>LoadBalancer</code>.</li>
+</ul>
+<p>Once you have:</p>
+<ul>
+<li>installed Docker</li>
+<li>installed Minikube</li>
+<li>installed Kubectl（Check the version to verify if it's installed)</li>
+<li>and downloaded the required files</li>
+</ul>
+<p>you can proceed with the following steps.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="task-1-launching-k8s-and-deploy-our-containers"><a class="header" href="#task-1-launching-k8s-and-deploy-our-containers">Task 1: Launching K8s and deploy our containers</a></h1>
+<h2 id="launch-your-kubernetes-cluster"><a class="header" href="#launch-your-kubernetes-cluster">Launch your Kubernetes cluster</a></h2>
+<h3 id="1-start-the-kubernetes-cluster"><a class="header" href="#1-start-the-kubernetes-cluster">1. Start the Kubernetes cluster</a></h3>
+<pre><code class="language-bash">minikube start
+</code></pre>
+<h3 id="2-get-the-instructions-to-point-your-docker-client-to-point-to-the-minikube-docker-daemon"><a class="header" href="#2-get-the-instructions-to-point-your-docker-client-to-point-to-the-minikube-docker-daemon">2. Get the instructions to point your docker client to point to the minikube docker daemon</a></h3>
+<pre><code class="language-bash">minikube docker-env
+</code></pre>
+<h3 id="3-check-the-status-of-your-minikube-deployment"><a class="header" href="#3-check-the-status-of-your-minikube-deployment">3. Check the status of your minikube deployment</a></h3>
+<pre><code class="language-bash">minikube status
+</code></pre>
+<h2 id="deploy-the-containers-into-the-cluster"><a class="header" href="#deploy-the-containers-into-the-cluster">Deploy the containers into the cluster</a></h2>
+<h3 id="1-enter-the-k8s-folder-and-input-the-following-command"><a class="header" href="#1-enter-the-k8s-folder-and-input-the-following-command">1. Enter the k8s folder and input the following command:</a></h3>
+<pre><code class="language-bash">kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+</code></pre>
+<h3 id="2-check-the-status-of-your-deployment"><a class="header" href="#2-check-the-status-of-your-deployment">2. Check the status of your deployment</a></h3>
+<pre><code class="language-bash">kubectl get pods
+kubectl get deployment
+kubectl get services
+</code></pre>
+<div class="warning">
+    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(10 points)</strong>
+</div>
+<p><img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-37-16.png" alt="" /></p>
+<h3 id="3-answer-the-following-questions-and-include-the-answers-in-your-report"><a class="header" href="#3-answer-the-following-questions-and-include-the-answers-in-your-report">3. Answer the following questions and include the answers in your report:</a></h3>
+<ul>
+<li>What is Kubernetes? Why do we need it? <em><strong>(5 points)</strong></em></li>
+<li>Please explain the concepts of <code>Deployment</code>, <code>Service</code> and <code>Pod</code>. <em><strong>(5 points)</strong></em></li>
+<li>Why k8s use pod to manipulate the application instead of the container. <em><strong>(5 points)</strong></em></li>
+<li>What is <code>Replica Set</code> in Kubernetes? <em><strong>(5 points)</strong></em></li>
+<li>Why can the client successfully communicate through port 30080 when the server is listening on port 8888? <em><strong>(10 points)</strong></em></li>
+</ul>
+<h2 id="optional-check-if-your-container-is-running-correctly-on-the-minikube"><a class="header" href="#optional-check-if-your-container-is-running-correctly-on-the-minikube">(Optional) Check if your container is running correctly on the minikube</a></h2>
+<h3 id="1-get-the-ip-address-of-the-minikube"><a class="header" href="#1-get-the-ip-address-of-the-minikube">1. Get the ip address of the minikube:</a></h3>
+<pre><code class="language-bash">minikube ip
+</code></pre>
+<h3 id="2-enter-the-client-folder-open-and-modify-the-please-assign-section-in-socket_clientc-replace--with-your-actual-student-id"><a class="header" href="#2-enter-the-client-folder-open-and-modify-the-please-assign-section-in-socket_clientc-replace--with-your-actual-student-id">2. Enter the client folder, open and modify the <code>PLEASE ASSIGN</code> section in <code>socket_client.c</code>. (Replace <your student ID> with your actual student ID):</a></h3>
+<p><img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-30-32.png" alt="" />
+<img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-30-45.png" alt="" /></p>
+<h3 id="3-tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing"><a class="header" href="#3-tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing">3. Tear down the deployed services and minikube cluster after you finished testing:</a></h3>
+<pre><code class="language-bash">kubectl delete -f service.yaml
+kubectl delete -f deployment.yaml
+minikube stop
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="assignment-1"><a class="header" href="#assignment-1">Assignment</a></h1>
+<h2 id="requirements-1"><a class="header" href="#requirements-1">Requirements</a></h2>
+<h3 id="1-report-100-points"><a class="header" href="#1-report-100-points">1. Report (100 points)</a></h3>
+<ul>
+<li>You have to make a report of <em><strong>pdf format</strong></em> named <code>HW2_&lt;your_student_id&gt;.pdf</code>, e.g. <code>HW2_113062566.pdf</code>.</li>
+<li>The report should include the answers to the questions mentioned in the description of this lab.</li>
+</ul>
+<h2 id="submission-1"><a class="header" href="#submission-1">Submission</a></h2>
+<p>Submit the report to eeclass.</p>
+<h2 id="deadline-1"><a class="header" href="#deadline-1">Deadline</a></h2>
+<p>The deadline is set for November 26, 2024. Late submission is not allowed.</p>
+<p>If you have any question, feel free to asking through eeclass or email.</p>
 
                     </main>
 
