@@ -9,4 +9,4 @@
 The download link for VMware's software can be elusive, so you might need to put in some effort to locate it.
 
 3. Next, go to download Ubuntu-24.04 desktop version as your Guest OS. It’s about 5.9G. 
-You can grab it from here: [download link](https://free.nchc.org.tw/ubuntu-cd/24.04/ubuntu-24.04.2-desktop-amd64.iso)
+You can grab it from here: [download link](https://free.nchc.org.tw/ubuntu-cd/24.04/)
