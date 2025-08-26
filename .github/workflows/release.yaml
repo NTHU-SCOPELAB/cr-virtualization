@@ -1,0 +1,53 @@
+---
+name: Create Release with HW2 Archive
+
+"on":
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create hw2.zip
+        run: |
+          zip -r hw2.zip hw2/
+          ls -la hw2.zip
+
+      - name: Generate release tag
+        id: tag
+        run: |
+          # Generate a tag based on timestamp and short commit SHA
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          TAG="hw2-${TIMESTAMP}-${SHORT_SHA}"
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "Generated tag: ${TAG}"
+
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: HW2 Release ${{ steps.tag.outputs.tag }}
+          body: |
+            Automated release of HW2 folder contents.
+
+            This release contains:
+            - Docker configuration files for server and client
+            - Kubernetes deployment and service configurations
+            - All files from the hw2 directory
+
+            Generated from commit: ${{ github.sha }}
+          files: hw2.zip
+          draft: false
+          make_latest: true
+          prerelease: false
