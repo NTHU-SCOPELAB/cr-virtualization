@@ -49,4 +49,5 @@ jobs:
             Generated from commit: ${{ github.sha }}
           files: hw2.zip
           draft: false
+          make_latest: true
           prerelease: false
