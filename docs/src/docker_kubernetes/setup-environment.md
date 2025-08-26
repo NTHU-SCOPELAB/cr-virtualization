@@ -1,9 +1,9 @@
 # Setup Environment
 
 ## Prequisite
-We have provided the required files for this assignment. Please download them from the homework announcement page.
+We have provided the required files for this assignment. Please download them from [here](https://github.com/NTHU-SCOPELAB/cr-virtualization/releases/latest/download/hw2.zip).
 
-The required files are as follows: hw2.zip including:
+The required files are as follows (included within the downloaded `hw2.zip`):
 ```
 docker
   |-- server
