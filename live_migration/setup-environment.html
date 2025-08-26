@@ -36,6 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -92,10 +93,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -146,7 +150,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -179,7 +188,7 @@
 <p>The download link for VMware's software can be elusive, so you might need to put in some effort to locate it.</p>
 <ol start="3">
 <li>Next, go to download Ubuntu-24.04 desktop version as your Guest OS. It’s about 5.9G.
-You can grab it from here: <a href="https://free.nchc.org.tw/ubuntu-cd/24.04/ubuntu-24.04.2-desktop-amd64.iso">download link</a></li>
+You can grab it from here: <a href="https://free.nchc.org.tw/ubuntu-cd/24.04/">download link</a></li>
 </ol>
 
                     </main>
@@ -228,6 +237,7 @@ You can grab it from here: <a href="https://free.nchc.org.tw/ubuntu-cd/24.04/ubu
         <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+
 
 
     </div>
