@@ -2,7 +2,7 @@
 
 # HW1. Virtual Machine Live Migration
 - [Objective](./live_migration/objective.md)
-- [Setup Environment(Host OS)](./live_migration/setup-environment.md)
+- [Setup Environment(Guest 1 / Guest 2)](./live_migration/setup-environment.md)
     - [VMWare Workstation](./live_migration/setup-environment/vmware-workstation.md)
     - [VirtualBox](./live_migration/setup-environment/virtualbox.md)
     - [QEMU](./live_migration/setup-environment/qemu.md)
