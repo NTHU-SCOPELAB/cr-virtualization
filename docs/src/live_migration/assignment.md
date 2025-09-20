@@ -28,7 +28,7 @@ Submit both the demo video link and the report to eeclass.
 
 
 ## Deadline
-The deadline is set for October 25, 2024. Late submission is not allowed. 
+The deadline is set for October 26, 2025 23:59. Late submission is not allowed. 
 
 
 If you have any question, feel free to asking through eeclass or email.
