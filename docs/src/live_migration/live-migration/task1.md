@@ -21,7 +21,7 @@ qemu-img create -f qcow2 ubuntu.qcow2 10G
 ### 4. Create a new directory in `/mnt` and modify its ownership and permissions:
 ```bash
 sudo mkdir -p /mnt/nfs
-sudo chown nobody:nogrouup /mnt/nfs
+sudo chown nobody:nogroup /mnt/nfs
 sudo chmod 777 /mnt/nfs
 ```
 
