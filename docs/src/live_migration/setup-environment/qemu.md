@@ -49,6 +49,10 @@ sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
     -boot d -cdrom <your_ubuntu_img_file_path>.iso \
     -vnc :1,password=on -monitor stdio
 ```
+- In qemu console, type the following command to change the vnc password to the one you know:
+```bash
+(qemu) change vnc password
+```
 - Using any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5902 (e.g. : 192.168.7.102:5902 or 127.0.0.1:5902), and complete the installation process.
 
 - After Ubuntu installation is complete, remove the `-boot d -cdrom <your_img_file_path>.iso` part from the above command and run `guest2` again.
