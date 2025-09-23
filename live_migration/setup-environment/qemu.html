@@ -224,6 +224,11 @@ sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
     -vnc :1,password=on -monitor stdio
 </code></pre>
 <ul>
+<li>In qemu console, type the following command to change the vnc password to the one you know:</li>
+</ul>
+<pre><code class="language-bash">(qemu) change vnc password
+</code></pre>
+<ul>
 <li>
 <p>Using any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5902 (e.g. : 192.168.7.102:5902 or 127.0.0.1:5902), and complete the installation process.</p>
 </li>
