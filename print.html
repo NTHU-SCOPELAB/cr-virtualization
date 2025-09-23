@@ -238,6 +238,19 @@ You can grab it from here: <a href="https://free.nchc.org.tw/ubuntu-cd/24.04/">d
 Replace <code>"VM Name"</code> with the name of your virtual machine.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="qemu"><a class="header" href="#qemu">QEMU</a></h1>
+<h3 id="0-before-starting-setup-a-bridge-br0-for-qemu-to-bind-to-will-be-cleaned-up-naturally-after-a-reboot"><a class="header" href="#0-before-starting-setup-a-bridge-br0-for-qemu-to-bind-to-will-be-cleaned-up-naturally-after-a-reboot">0. Before starting, setup a bridge <code>br0</code> for QEMU to bind to: (will be cleaned up naturally after a reboot)</a></h3>
+<ul>
+<li>Choose a subnet/IP that does not conflict with your usecase. For CIDR notation, see <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">here</a>.</li>
+</ul>
+<pre><code class="language-bash">sudo ip link add br0 type bridge
+sudo ip addr add 192.168.50.1/24 dev br0
+sudo ip link set br0 up
+</code></pre>
+<ul>
+<li>after running the command above, you can review your current network settings:</li>
+</ul>
+<pre><code class="language-bash">ip a
+</code></pre>
 <h3 id="1-first-create-the-disk-image-for-guest1"><a class="header" href="#1-first-create-the-disk-image-for-guest1">1. First, create the disk image for <code>guest1</code>.</a></h3>
 <pre><code class="language-bash">qemu-img create -f qcow2 guest1.qcow2 20G
 </code></pre>
@@ -246,10 +259,15 @@ Replace <code>"VM Name"</code> with the name of your virtual machine.</li>
     -drive if=virtio,format=qcow2,file=guest1.qcow2 \
     -nic bridge,br=br0,model=virtio-net-pci,mac=52:54:00:40:C9:01 \
     -boot d -cdrom &lt;your_ubuntu_img_file_path&gt;.iso \
-    -vnc :1
+    -vnc :1,password=on -monitor=stdio
 </code></pre>
 <ul>
-<li>Using any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5901 (e.g. : 192.168.7.102:5901 or 127.0.0.1:5901), and complete the installation process.</li>
+<li>In qemu console, type the following command to change the vnc password to the one you know:</li>
+</ul>
+<pre><code class="language-bash">(qemu) change vnc password
+</code></pre>
+<ul>
+<li>After changing the password to the one you know, use any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5901 (e.g. : 192.168.7.102:5901 or 127.0.0.1:5901), and complete the installation process.</li>
 <li>After Ubuntu installation is complete, remove the <code>-boot d -cdrom &lt;your_img_file_path&gt;.iso</code> part from the above command and run <code>guest1</code> again.</li>
 </ul>
 <h3 id="3-repeat-the-same-steps-for-guest2"><a class="header" href="#3-repeat-the-same-steps-for-guest2">3. Repeat the same steps for <code>guest2</code></a></h3>
@@ -258,7 +276,7 @@ sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
     -drive if=virtio,format=qcow2,file=guest2.qcow2 \
     -nic bridge,br=br0,model=virtio-net-pci,mac=52:54:00:40:C9:02 \
     -boot d -cdrom &lt;your_ubuntu_img_file_path&gt;.iso \
-    -vnc :1
+    -vnc :1,password=on -monitor=stdio
 </code></pre>
 <ul>
 <li>
