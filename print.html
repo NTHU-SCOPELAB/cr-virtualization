@@ -247,9 +247,16 @@ sudo ip addr add 192.168.50.1/24 dev br0
 sudo ip link set br0 up
 </code></pre>
 <ul>
-<li>after running the command above, you can review your current network settings:</li>
+<li>After running the command above, you can inspect your current network settings:</li>
 </ul>
 <pre><code class="language-bash">ip a
+</code></pre>
+<ul>
+<li>Add a configuration file to enable qemu to automatically pick up your bridge configured above:</li>
+</ul>
+<pre><code class="language-bash">sudo su
+mkdir -p /etc/qemu
+echo "allow br0" &gt;&gt; /etc/qemu/bridge.conf
 </code></pre>
 <h3 id="1-first-create-the-disk-image-for-guest1"><a class="header" href="#1-first-create-the-disk-image-for-guest1">1. First, create the disk image for <code>guest1</code>.</a></h3>
 <pre><code class="language-bash">qemu-img create -f qcow2 guest1.qcow2 20G
