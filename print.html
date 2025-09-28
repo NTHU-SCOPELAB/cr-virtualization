@@ -258,6 +258,19 @@ sudo ip link set br0 up
 mkdir -p /etc/qemu
 echo "allow br0" &gt;&gt; /etc/qemu/bridge.conf
 </code></pre>
+<ul>
+<li>For host to provide internet access to all instances attached to this bridge, issue the following command:</li>
+</ul>
+<pre><code class="language-bash">sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -A FORWARD -i br0 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o br0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -o eth0 -s 192.168.50.0/24 -j MASQUERADE
+</code></pre>
+<ul>
+<li>Note: swap out <code>eth0</code> for your network interface that provides internet access, you can check it by issuing the following command:</li>
+</ul>
+<pre><code class="language-bash">ip address
+</code></pre>
 <h3 id="1-first-create-the-disk-image-for-guest1"><a class="header" href="#1-first-create-the-disk-image-for-guest1">1. First, create the disk image for <code>guest1</code>.</a></h3>
 <pre><code class="language-bash">qemu-img create -f qcow2 guest1.qcow2 20G
 </code></pre>
@@ -276,6 +289,7 @@ echo "allow br0" &gt;&gt; /etc/qemu/bridge.conf
 <ul>
 <li>After changing the password to the one you know, use any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5901 (e.g. : 192.168.7.102:5901 or 127.0.0.1:5901), and complete the installation process.</li>
 <li>After Ubuntu installation is complete, remove the <code>-boot d -cdrom &lt;your_img_file_path&gt;.iso</code> part from the above command and run <code>guest1</code> again.</li>
+<li>If you want to reach internet or other device on this guest instance, you may want to manually configure your IP under the same subnet. (e.g. <code>192.168.50.2</code>, subnet mask: <code>255.255.255.0</code>, gateway: <code>192.168.50.1</code>)</li>
 </ul>
 <h3 id="3-repeat-the-same-steps-for-guest2"><a class="header" href="#3-repeat-the-same-steps-for-guest2">3. Repeat the same steps for <code>guest2</code></a></h3>
 <pre><code class="language-bash">qemu-img create -f qcow2 guest2.qcow2 20G
@@ -296,6 +310,9 @@ sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
 </li>
 <li>
 <p>After Ubuntu installation is complete, remove the <code>-boot d -cdrom &lt;your_img_file_path&gt;.iso</code> part from the above command and run <code>guest2</code> again.</p>
+</li>
+<li>
+<p>If you want to reach internet or other device on this guest instance, you may want to manually configure your IP under the same subnet. (e.g. <code>192.168.50.3</code>, subnet mask: <code>255.255.255.0</code>, gateway: <code>192.168.50.1</code>)</p>
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="live-migration-1"><a class="header" href="#live-migration-1">Live Migration</a></h1>
