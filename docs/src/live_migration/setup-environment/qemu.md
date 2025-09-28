@@ -20,6 +20,18 @@ mkdir -p /etc/qemu
 echo "allow br0" >> /etc/qemu/bridge.conf
 ```
 
+- For host to provide internet access to all instances attached to this bridge, issue the following command:
+```bash
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -A FORWARD -i br0 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o br0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -o eth0 -s 192.168.50.0/24 -j MASQUERADE
+```
+- Note: swap out `eth0` for your network interface that provides internet access, you can check it by issuing the following command:
+```bash
+ip address
+```
+
 ### 1. First, create the disk image for `guest1`.
 ```bash
 qemu-img create -f qcow2 guest1.qcow2 20G
@@ -39,6 +51,7 @@ sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
 ```
 - After changing the password to the one you know, use any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5901 (e.g. : 192.168.7.102:5901 or 127.0.0.1:5901), and complete the installation process.
 - After Ubuntu installation is complete, remove the `-boot d -cdrom <your_img_file_path>.iso` part from the above command and run `guest1` again.
+- If you want to reach internet or other device on this guest instance, you may want to manually configure your IP under the same subnet. (e.g. `192.168.50.2`, subnet mask: `255.255.255.0`, gateway: `192.168.50.1`)
 
 ### 3. Repeat the same steps for `guest2`
 ```bash
@@ -56,3 +69,4 @@ sudo qemu-system-x86_64 -cpu host -enable-kvm -m 4G -smp 1 \
 - Using any VNC viewer (e.g. : RealVNC, vncviewer) connect to (Your host IP):5902 (e.g. : 192.168.7.102:5902 or 127.0.0.1:5902), and complete the installation process.
 
 - After Ubuntu installation is complete, remove the `-boot d -cdrom <your_img_file_path>.iso` part from the above command and run `guest2` again.
+- If you want to reach internet or other device on this guest instance, you may want to manually configure your IP under the same subnet. (e.g. `192.168.50.3`, subnet mask: `255.255.255.0`, gateway: `192.168.50.1`)
