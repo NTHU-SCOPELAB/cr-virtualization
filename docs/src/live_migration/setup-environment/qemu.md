@@ -1,6 +1,9 @@
 # QEMU
 
 ### 0. Before starting, setup a bridge `br0` for QEMU to bind to: (will be cleaned up naturally after a reboot)
+<img width="505" height="245" alt="image" src="https://github.com/user-attachments/assets/db65c060-5a7c-4336-8cf0-85647732ea49" />  
+
+
 - Choose a subnet/IP that does not conflict with your usecase. For CIDR notation, see [here](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation).
 ```bash
 sudo ip link add br0 type bridge
