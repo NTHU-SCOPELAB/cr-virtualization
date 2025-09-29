@@ -1,7 +1,8 @@
 # QEMU
 
 ### 0. Before starting, setup a bridge `br0` for QEMU to bind to: (will be cleaned up naturally after a reboot)
-<img width="505" height="245" alt="image" src="https://github.com/user-attachments/assets/3c9ef3ae-8759-4bb0-bf62-1250ce20370d" />  
+<img width="505" height="245" alt="image" src="https://github.com/user-attachments/assets/9b2b277c-9438-4562-b683-678a8356939a" />  
+
 
 
 - Choose a subnet/IP that does not conflict with your usecase. For CIDR notation, see [here](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation).
