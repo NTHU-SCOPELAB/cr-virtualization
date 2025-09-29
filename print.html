@@ -371,7 +371,7 @@ sudo apt install -y qemu-kvm net-tools nfs-common
 <p><img src="live_migration/live-migration/../../assets/2025-06-10-22-20-48.png" alt="" /></p>
 <h3 id="3-enter-the-following-commands-into-the-terminal-to-mount-nfs-service"><a class="header" href="#3-enter-the-following-commands-into-the-terminal-to-mount-nfs-service">3. Enter the following commands into the terminal to mount NFS service:</a></h3>
 <pre><code class="language-bash">sudo mkdir -p /mnt/nfs
-sudo mount -t nfs &lt;replace_with_guest1_ip&gt;:/mnt/nfs /mnt/nfs&gt;
+sudo mount -t nfs &lt;replace_with_guest1_ip&gt;:/mnt/nfs /mnt/nfs
 </code></pre>
 <h3 id="4-luanch-qemu-on-the-second-vm-to-prepare-for-the-incoming-live-virtual-machine-migration"><a class="header" href="#4-luanch-qemu-on-the-second-vm-to-prepare-for-the-incoming-live-virtual-machine-migration">4. Luanch QEMU on the second VM to prepare for the incoming live virtual machine migration:</a></h3>
 <pre><code class="language-bash">sudo qemu-system-x86_64 \
