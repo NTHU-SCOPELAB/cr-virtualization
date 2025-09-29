@@ -15,7 +15,7 @@ ip a
 ### 3. Enter the following commands into the terminal to mount NFS service:
 ```bash
 sudo mkdir -p /mnt/nfs
-sudo mount -t nfs <replace_with_guest1_ip>:/mnt/nfs /mnt/nfs>
+sudo mount -t nfs <replace_with_guest1_ip>:/mnt/nfs /mnt/nfs
 ```
 
 ### 4. Luanch QEMU on the second VM to prepare for the incoming live virtual machine migration:
