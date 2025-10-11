@@ -2,7 +2,7 @@
 
 ## 0. Prerequisite
 - You need to have a google account that have access to Google AI Studio.
-- You can use your local or other model provider as [backend](https://docs.k8sgpt.ai/reference/providers/backend/), but we'll use Gemini API as an example here.
+- You can use your local or other model provider as [backend](https://docs.k8sgpt.ai/reference/providers/backend/), but we'll use the free `gemini-2.5-flash` API from Google AI Studio as an example here.
 
 
 ## 1. Install K8sGPT
@@ -14,10 +14,18 @@
 ### a. Go to [Google AI Studio](https://studio.google.com/) and sign in with your Google account.
 
 ### b. Click on "Get API Key" button on the bottom left corner.
+<img width="865" height="552" alt="image" src="https://github.com/user-attachments/assets/952895d6-31d6-4222-b951-a972f55dda0b" />
+
 
 ### c. Create API Key
+<img width="866" height="552" alt="image" src="https://github.com/user-attachments/assets/62558e2e-e5fb-42e6-9311-cb388eabfd8e" />
+<img width="780" height="493" alt="image" src="https://github.com/user-attachments/assets/67d79e09-8462-4984-a0ba-ca0b06456b67" />
+<img width="847" height="534" alt="image" src="https://github.com/user-attachments/assets/21ad748c-e6b1-45fe-9854-41be4bb09fbf" />
+<img width="775" height="442" alt="image" src="https://github.com/user-attachments/assets/154b3340-f3eb-4ac1-af27-a60c8f30f1bb" />
+
 
 ### d. Copy the generated API key and save it somewhere safe.
+<img width="864" height="552" alt="image" src="https://github.com/user-attachments/assets/8b2c8139-2388-474f-a189-7c1301993dec" />
 
 
 ## 3. Setup K8sGPT to use Gemini API as backend
@@ -25,6 +33,7 @@
 ```bash
 k8sgpt auth add --backend google --model gemini-2.5-flash --password "YOUR_API_KEY"
 ```
+<img width="1460" height="103" alt="image" src="https://github.com/user-attachments/assets/d31cc34f-3111-4fca-89cf-bca16ba60515" />
 
 ## 4. Ask K8sGPT to analyze your cluster and try to explain the issue:
 ```bash
