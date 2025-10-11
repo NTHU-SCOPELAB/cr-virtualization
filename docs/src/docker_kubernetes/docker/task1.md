@@ -1,7 +1,7 @@
 # Task 1: Building the images
 
-### 1. Enter the client folder, open and modify the `PLEASE ASSIGN` section in `socket_client.c` as shown in the following image:
-![](../../assets/2025-06-10-23-52-55.png)
+### 1. Enter the client folder, open and modify the `PLEASE ASSIGN` section and append your student ID in `socket_client.c` as shown in the following image:
+<img width="750" height="552" alt="image" src="https://github.com/user-attachments/assets/aada0c11-2987-4ca2-84cd-37d48093227f" />
 
 ### 2. Build the image with the Dockerfile
 - If you're on arm64 architecture (e.g., Apple M1/M2), you'll have to modify the Dockerfile to use `socket_server_arm` instead.
