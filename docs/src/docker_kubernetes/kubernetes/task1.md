@@ -15,6 +15,8 @@ minikube docker-env
 ```bash
 minikube status
 ```
+<img width="387" height="287" alt="image" src="https://github.com/user-attachments/assets/a66162be-f31d-41fb-a3c5-b93135f2848f" />
+
 
 ## Deploy the containers into the cluster
 ### 1. Enter the k8s folder and input the following command:
