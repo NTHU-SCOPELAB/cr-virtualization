@@ -636,7 +636,7 @@ minikube stop
 <h2 id="0-prerequisite"><a class="header" href="#0-prerequisite">0. Prerequisite</a></h2>
 <ul>
 <li>You need to have a google account that have access to Google AI Studio.</li>
-<li>You can use your local or other model provider as <a href="https://docs.k8sgpt.ai/reference/providers/backend/">backend</a>, but we'll use Gemini API as an example here.</li>
+<li>You can use your local or other model provider as <a href="https://docs.k8sgpt.ai/reference/providers/backend/">backend</a>, but we'll use the free <code>gemini-2.5-flash</code> API from Google AI Studio as an example here.</li>
 </ul>
 <h2 id="1-install-k8sgpt"><a class="header" href="#1-install-k8sgpt">1. Install K8sGPT</a></h2>
 <ul>
@@ -646,14 +646,21 @@ minikube stop
 <h2 id="2-generate-api-key-from-google-ai-studio"><a class="header" href="#2-generate-api-key-from-google-ai-studio">2. Generate API Key from Google AI Studio</a></h2>
 <h3 id="a-go-to-google-ai-studio-and-sign-in-with-your-google-account"><a class="header" href="#a-go-to-google-ai-studio-and-sign-in-with-your-google-account">a. Go to <a href="https://studio.google.com/">Google AI Studio</a> and sign in with your Google account.</a></h3>
 <h3 id="b-click-on-get-api-key-button-on-the-bottom-left-corner"><a class="header" href="#b-click-on-get-api-key-button-on-the-bottom-left-corner">b. Click on "Get API Key" button on the bottom left corner.</a></h3>
+<img width="865" height="552" alt="image" src="https://github.com/user-attachments/assets/952895d6-31d6-4222-b951-a972f55dda0b" />
 <h3 id="c-create-api-key"><a class="header" href="#c-create-api-key">c. Create API Key</a></h3>
+<img width="866" height="552" alt="image" src="https://github.com/user-attachments/assets/62558e2e-e5fb-42e6-9311-cb388eabfd8e" />
+<img width="780" height="493" alt="image" src="https://github.com/user-attachments/assets/67d79e09-8462-4984-a0ba-ca0b06456b67" />
+<img width="847" height="534" alt="image" src="https://github.com/user-attachments/assets/21ad748c-e6b1-45fe-9854-41be4bb09fbf" />
+<img width="775" height="442" alt="image" src="https://github.com/user-attachments/assets/154b3340-f3eb-4ac1-af27-a60c8f30f1bb" />
 <h3 id="d-copy-the-generated-api-key-and-save-it-somewhere-safe"><a class="header" href="#d-copy-the-generated-api-key-and-save-it-somewhere-safe">d. Copy the generated API key and save it somewhere safe.</a></h3>
+<img width="864" height="552" alt="image" src="https://github.com/user-attachments/assets/8b2c8139-2388-474f-a189-7c1301993dec" />
 <h2 id="3-setup-k8sgpt-to-use-gemini-api-as-backend"><a class="header" href="#3-setup-k8sgpt-to-use-gemini-api-as-backend">3. Setup K8sGPT to use Gemini API as backend</a></h2>
 <ul>
 <li>Replace <code>YOUR_API_KEY</code> with the API key you generated in step 2.</li>
 </ul>
 <pre><code class="language-bash">k8sgpt auth add --backend google --model gemini-2.5-flash --password "YOUR_API_KEY"
 </code></pre>
+<img width="1460" height="103" alt="image" src="https://github.com/user-attachments/assets/d31cc34f-3111-4fca-89cf-bca16ba60515" />
 <h2 id="4-ask-k8sgpt-to-analyze-your-cluster-and-try-to-explain-the-issue"><a class="header" href="#4-ask-k8sgpt-to-analyze-your-cluster-and-try-to-explain-the-issue">4. Ask K8sGPT to analyze your cluster and try to explain the issue:</a></h2>
 <pre><code class="language-bash">k8sgpt analyze --explain --backend google
 </code></pre>
