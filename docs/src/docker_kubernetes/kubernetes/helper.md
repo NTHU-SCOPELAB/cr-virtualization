@@ -3,6 +3,7 @@
 ## 0. Prerequisite
 - You need to have a google account that have access to Google AI Studio.
 - You can use your local or other model provider as [backend](https://docs.k8sgpt.ai/reference/providers/backend/), but we'll use the free `gemini-2.5-flash` API from Google AI Studio as an example here.
+- If you care about privacy when running K8sGPT on your PC, you may want to [check this out](https://docs.k8sgpt.ai/reference/guidelines/privacy/).
 
 
 ## 1. Install K8sGPT
