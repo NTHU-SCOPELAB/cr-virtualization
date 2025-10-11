@@ -21,8 +21,8 @@ k8s
 ```
 
 In addition, you must install the following programs on your computer:
-- Docker: A tool that is used to automate the deployment of applications.
-- Minikube: Local Kubernetes, focusing on making it easy to learn for Kubernetes.
-- Kubectl: Command line tool for communicating with a control plane.
+- [Docker](https://docs.docker.com/get-started/get-docker/): A tool that is used to automate the deployment of applications.
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/): Local Kubernetes, focusing on making it easy to learn for Kubernetes.
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): Command line tool for communicating with a control plane.
 
 There are different installation processes dependending on your operating system. You must have ***root permissions*** in your system.
