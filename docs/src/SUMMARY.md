@@ -22,4 +22,5 @@
     - [Task 3: Creating volume](./docker_kubernetes/docker/task3.md)
 - [Kubernetes](./docker_kubernetes/kubernetes.md)
     - [Task 1: Launching K8s and deploy our containers](./docker_kubernetes/kubernetes/task1.md)
+    - [Helper: Using K8sGPT to help debugging your issue](./docker_kubernetes/kubernetes/helper.md)
 - [Assignment](./docker_kubernetes/assignment.md)

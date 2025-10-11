@@ -19,7 +19,7 @@ minikube status
 
 
 ## Deploy the containers into the cluster
-### 1. Enter the k8s folder and input the following command:
+### 1. Enter the k8s folder, modify the files as required and input the following command:
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
