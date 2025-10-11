@@ -34,7 +34,7 @@
 ```bash
 k8sgpt auth add --backend google --model gemini-2.5-flash --password "YOUR_API_KEY"
 ```
-<img width="1460" height="103" alt="image" src="https://github.com/user-attachments/assets/d31cc34f-3111-4fca-89cf-bca16ba60515" />
+<img width="1460" alt="image" src="https://github.com/user-attachments/assets/d31cc34f-3111-4fca-89cf-bca16ba60515" />
 
 ## 4. Ask K8sGPT to analyze your cluster and try to explain the issue:
 ```bash
