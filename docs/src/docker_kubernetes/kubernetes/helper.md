@@ -131,5 +131,5 @@ kubectl apply -f service.yaml
 # Check if everything is working now
 kubectl get all
 ```
-<img width="1323" height="406" alt="image" src="https://github.com/user-attachments/assets/4d71c69a-b586-492a-b454-09c53909b9a2" />
+<img width="1323" alt="image" src="https://github.com/user-attachments/assets/4d71c69a-b586-492a-b454-09c53909b9a2" />
 
