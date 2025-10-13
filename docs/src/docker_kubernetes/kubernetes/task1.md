@@ -54,7 +54,9 @@ minikube ip
 ![](../../assets/2025-06-11-12-30-32.png)
 ![](../../assets/2025-06-11-12-30-45.png)
 
-### 3. Tear down the deployed services and minikube cluster after you finished testing:
+### 3. Build and run the client container.
+
+## Tear down the deployed services and minikube cluster after you finished testing:
 ```bash
 kubectl delete -f service.yaml
 kubectl delete -f deployment.yaml
