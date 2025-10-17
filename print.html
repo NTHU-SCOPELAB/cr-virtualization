@@ -746,7 +746,8 @@ Solution: 1. Ensure image is built/loaded onto the node. 2. Or, update pod spec'
 <ul>
 <li>Now you can start to look for hints to solve the issue, or feed this information to the LLM you use to provide better context to solve your problem.</li>
 </ul>
-<pre><code class="language-bash"># In docker/server, build the image inside minikube
+<pre><code class="language-bash"># Before proceeding, make sure you have modified the deployment.yaml accordingly(socket-server container name).
+# In docker/server, build the image inside minikube
 minikube image build -t server-&lt;your student ID&gt; .
 
 # In k8s, after patching the image name in deployment.yaml
