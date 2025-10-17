@@ -119,6 +119,7 @@ Solution: 1. Ensure image is built/loaded onto the node. 2. Or, update pod spec'
 
 - Now you can start to look for hints to solve the issue, or feed this information to the LLM you use to provide better context to solve your problem.
 ```bash
+# Before proceeding, make sure you have modified the deployment.yaml accordingly(socket-server container name).
 # In docker/server, build the image inside minikube
 minikube image build -t server-<your student ID> .
 
