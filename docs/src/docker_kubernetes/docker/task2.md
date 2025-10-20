@@ -5,7 +5,7 @@
 
 ### 1. Create 2 containers using the following commands:
 ```bash
-docker container run -d --rm --name box1 busybox /bin/sh -c "while true; do sleep 3600; done“
+docker container run -d --rm --name box1 busybox /bin/sh -c "while true; do sleep 3600; done"
 ```
 ```bash
 docker container run -d --rm --name box2 busybox /bin/sh -c "while true; do sleep 3600; done"
