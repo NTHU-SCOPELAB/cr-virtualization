@@ -16,7 +16,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Build server
+        working-directory: hw2/docker/server
+        run: |
+          gcc -o socket_server socket_server.c
+          rm socket_server.c
 
       - name: Create hw2.zip
         run: |
