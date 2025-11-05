@@ -1,7 +1,6 @@
----
 name: Create Release with HW2 Archive
 
-"on":
+on:
   push:
     branches:
       - main
@@ -11,23 +10,14 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  prepare_release:
+    name: Prepare Release (create tag & release)
     runs-on: ubuntu-latest
-
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
-      - name: Build server
-        working-directory: hw2/docker/server
-        run: |
-          gcc -o socket_server socket_server.c
-          rm socket_server.c
-
-      - name: Create hw2.zip
-        run: |
-          zip -r hw2.zip hw2/
-          ls -la hw2.zip
 
       - name: Generate release tag
         id: tag
@@ -36,10 +26,10 @@ jobs:
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
           SHORT_SHA=$(git rev-parse --short HEAD)
           TAG="hw2-${TIMESTAMP}-${SHORT_SHA}"
-          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
           echo "Generated tag: ${TAG}"
 
-      - name: Create Release and Upload Asset
+      - name: Create (or update) Release shell
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
@@ -53,7 +43,43 @@ jobs:
             - All files from the hw2 directory
 
             Generated from commit: ${{ github.sha }}
-          files: hw2.zip
+          draft: false
+          make_latest: true
+          prerelease: false
+
+  build_and_attach:
+    name: Build & Attach (${{ matrix.arch }})
+    needs: prepare_release
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: amd64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Build server
+        working-directory: hw2/docker/server
+        run: |
+          gcc -o socket_server socket_server.c
+          rm socket_server.c
+
+      - name: Create hw2 zip (tagged by architecture)
+        run: |
+          ZIP_NAME="hw2-${{ matrix.arch }}.zip"
+          zip -r "$ZIP_NAME" hw2/
+          ls -la "$ZIP_NAME"
+
+      - name: Upload asset to existing Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare_release.outputs.tag }}
+          files: hw2-${{ matrix.arch }}.zip
           draft: false
           make_latest: true
           prerelease: false
