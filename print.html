@@ -454,7 +454,7 @@ img {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="setup-environment-1"><a class="header" href="#setup-environment-1">Setup Environment</a></h1>
 <h2 id="prequisite"><a class="header" href="#prequisite">Prequisite</a></h2>
 <p>We have provided the required files for this assignment. Please download them from <a href="https://github.com/NTHU-SCOPELAB/cr-virtualization/releases/latest/download/hw2-amd64.zip">here</a>.</p>
-<p>If you're using Apple Silicon Macs, then you should grab <a href="https://github.com/NTHU-SCOPELAB/cr-virtualization/releases/latest/download/hw2-arm64.zip">this one</a> instead.</p>
+<p>If you're using Apple Silicon Macs(M1,M2,...), then you should grab <a href="https://github.com/NTHU-SCOPELAB/cr-virtualization/releases/latest/download/hw2-arm64.zip">this one</a> instead.</p>
 <p>The required files are as follows (included within the downloaded <code>hw2.zip</code>):</p>
 <pre><code>docker
   |-- server
@@ -488,9 +488,6 @@ k8s
 <h3 id="1-enter-the-client-folder-open-and-modify-the-please-assign-section-and-append-your-student-id-in-socket_clientc-as-shown-in-the-following-image"><a class="header" href="#1-enter-the-client-folder-open-and-modify-the-please-assign-section-and-append-your-student-id-in-socket_clientc-as-shown-in-the-following-image">1. Enter the client folder, open and modify the <code>PLEASE ASSIGN</code> section and append your student ID in <code>socket_client.c</code> as shown in the following image:</a></h3>
 <img width="750" height="552" alt="image" src="https://github.com/user-attachments/assets/25129b2c-e607-4f17-86ad-62384b6372f2" />
 <h3 id="2-build-the-image-with-the-dockerfile"><a class="header" href="#2-build-the-image-with-the-dockerfile">2. Build the image with the Dockerfile</a></h3>
-<ul>
-<li>If you're on arm64 architecture (e.g., Apple M1/M2), you'll have to modify the Dockerfile to use <code>socket_server_arm</code> instead.</li>
-</ul>
 <pre><code class="language-bash">cd path/to/server
 docker build -t server-&lt;your_student_id&gt;
 cd path/to/client
