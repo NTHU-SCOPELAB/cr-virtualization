@@ -5,7 +5,7 @@ We have provided the required files for this assignment. Please download them fr
 
 If you're using Apple Silicon Macs(M1,M2,...), then you should grab [this one](https://github.com/NTHU-SCOPELAB/cr-virtualization/releases/latest/download/hw2-arm64.zip) instead.
 
-The required files are as follows (included within the downloaded `hw2.zip`):
+The required files are as follows (included within the downloaded `hw2-amd64.zip` or `hw2-arm64.zip`):
 ```
 docker
   |-- server
