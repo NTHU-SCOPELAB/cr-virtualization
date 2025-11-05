@@ -1,4 +1,4 @@
-FROM gcc:12.2.0
+FROM gcc:15
 
 COPY socket_client.c /src/socket_client.c
 
