@@ -5,7 +5,6 @@
 
 
 ### 2. Build the image with the Dockerfile
-- If you're on arm64 architecture (e.g., Apple M1/M2), you'll have to modify the Dockerfile to use `socket_server_arm` instead.
 ```bash
 cd path/to/server
 docker build -t server-<your_student_id>
