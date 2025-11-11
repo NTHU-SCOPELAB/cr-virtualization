@@ -8,5 +8,5 @@
 
 ### Note: In this section, you are required to take screenshots of the command output to include in your report when you see something like this:
 <div class="warning">
-    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
+    <strong>Note:</strong> This is an example of what you would see when you are required to take screenshot and include in your report. <strong>(0 points)</strong>
 </div>
