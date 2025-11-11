@@ -4,11 +4,12 @@
 ### 1. Demo (40 points)
 - You need to demonstrate the above steps of the presentation through a screen recording, showing how you perform live migration on VMs using the framework we provided. 
 - You need to include every step involved in setting up guest 1 / guest 2, as well as the entire live migration process. This means your demo video should consist of ***every single step*** documented in these three pages:
-    - [Task 1](live-migration/task1.md)
-    - [Task 2](live-migration/task2.md)
-    - [Task 3](live-migration/task3.md)
+    - [Task 1: Setting up guest1](live-migration/task1.md)
+    - [Task 2: Setting up guest2](live-migration/task2.md)
+    - [Task 3: Migrate from guest1 to guest2](live-migration/task3.md)
     - You are free to simplify the execution through the measure of scripting. e.g., cloud-init, bash, ansible...etc.
-    - However, do keep in mind that if setup steps were not completely included in the demo, ***20 points will be deducted***.
+    - However, pasting commands one by one is also accepted, scripting is not required, and won't earn you any extra points.
+    - Do keep in mind that if setup steps were not completely included in the demo, ***20 points will be deducted***.
 - If you have any questions regarding what this may imply, make sure you ask the TA before recording.
 - Name the record video file as `HW1_<your_student_id>.xxx`, e.g. `HW1_113062566.mov` or `HW1_113062566.mp4`.
 - The length of this video should not exceed ***30 minutes***.
