@@ -631,9 +631,8 @@ kubectl get services
 <h3 id="1-get-the-ip-address-of-the-minikube"><a class="header" href="#1-get-the-ip-address-of-the-minikube">1. Get the ip address of the minikube:</a></h3>
 <pre><code class="language-bash">minikube ip
 </code></pre>
-<h3 id="2-enter-the-client-folder-open-and-modify-the-please-assign-section-in-socket_clientc-replace--with-your-actual-student-id"><a class="header" href="#2-enter-the-client-folder-open-and-modify-the-please-assign-section-in-socket_clientc-replace--with-your-actual-student-id">2. Enter the client folder, open and modify the <code>PLEASE ASSIGN</code> section in <code>socket_client.c</code>. (Replace <your student ID> with your actual student ID):</a></h3>
-<p><img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-30-32.png" alt="" />
-<img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-30-45.png" alt="" /></p>
+<h3 id="2-enter-the-docker-client-folder-open-and-modify-the-please-assign-section-in-socket_clientc-replace-minikube_ip-with-your-actual-minikube-ip"><a class="header" href="#2-enter-the-docker-client-folder-open-and-modify-the-please-assign-section-in-socket_clientc-replace-minikube_ip-with-your-actual-minikube-ip">2. Enter the docker client folder, open and modify the <code>PLEASE ASSIGN</code> section in <code>socket_client.c</code>. (Replace <code>&lt;MINIKUBE_IP&gt;</code> with your actual minikube ip):</a></h3>
+<p><img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-30-32.png" alt="" /></p>
 <h3 id="3-build-and-run-the-client-container"><a class="header" href="#3-build-and-run-the-client-container">3. Build and run the client container.</a></h3>
 <h2 id="tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing"><a class="header" href="#tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing">Tear down the deployed services and minikube cluster after you finished testing:</a></h2>
 <pre><code class="language-bash">kubectl delete -f service.yaml
@@ -641,6 +640,7 @@ kubectl delete -f deployment.yaml
 minikube stop
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="helper-using-k8sgpt-to-help-debugging-your-issue"><a class="header" href="#helper-using-k8sgpt-to-help-debugging-your-issue">Helper: Using K8sGPT to help debugging your issue</a></h1>
+<h2 id="this-part-is-not-a-requirement-you-wont-earn-any-extra-points-by-putting-this-into-your-report"><a class="header" href="#this-part-is-not-a-requirement-you-wont-earn-any-extra-points-by-putting-this-into-your-report">THIS PART IS NOT A REQUIREMENT, YOU WON'T EARN ANY EXTRA POINTS BY PUTTING THIS INTO YOUR REPORT.</a></h2>
 <h2 id="0-prerequisite"><a class="header" href="#0-prerequisite">0. Prerequisite</a></h2>
 <ul>
 <li>You need to have a google account that have access to Google AI Studio.</li>
