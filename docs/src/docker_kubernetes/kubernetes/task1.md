@@ -50,9 +50,8 @@ kubectl get services
 minikube ip
 ```
 
-### 2. Enter the client folder, open and modify the `PLEASE ASSIGN` section in `socket_client.c`. (Replace <your student ID> with your actual student ID):
+### 2. Enter the docker client folder, open and modify the `PLEASE ASSIGN` section in `socket_client.c`. (Replace `<MINIKUBE_IP>` with your actual minikube ip):
 ![](../../assets/2025-06-11-12-30-32.png)
-![](../../assets/2025-06-11-12-30-45.png)
 
 ### 3. Build and run the client container.
 

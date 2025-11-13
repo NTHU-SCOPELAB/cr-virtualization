@@ -1,5 +1,7 @@
 # Helper: Using K8sGPT to help debugging your issue
 
+## THIS PART IS NOT A REQUIREMENT, YOU WON'T EARN ANY EXTRA POINTS BY PUTTING THIS INTO YOUR REPORT.
+
 ## 0. Prerequisite
 - You need to have a google account that have access to Google AI Studio.
 - You can use your local or other model provider as [backend](https://docs.k8sgpt.ai/reference/providers/backend/), but we'll use the free `gemini-2.5-flash` API from Google AI Studio as an example here.
