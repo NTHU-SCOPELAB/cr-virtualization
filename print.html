@@ -631,7 +631,7 @@ kubectl get services
 <h3 id="1-get-the-ip-address-of-the-minikube"><a class="header" href="#1-get-the-ip-address-of-the-minikube">1. Get the ip address of the minikube:</a></h3>
 <pre><code class="language-bash">minikube ip
 </code></pre>
-<h3 id="2-open-and-modify-the-please-assign-section-in-dockerclientsocket_clientc-replace-minikube_ip-with-your-actual-minikube-ip"><a class="header" href="#2-open-and-modify-the-please-assign-section-in-dockerclientsocket_clientc-replace-minikube_ip-with-your-actual-minikube-ip">2. Open and modify the <code>PLEASE ASSIGN</code> section in <code>docker/client/socket_client.c</code>. (Replace <code>&lt;MINIKUBE_IP&gt;</code> with your actual minikube ip):</a></h3>
+<h3 id="2-open-and-modify-the-please-assign-section-in-dockerclientsocket_clientc-assign-your-actual-minikube-ip-to-server_address"><a class="header" href="#2-open-and-modify-the-please-assign-section-in-dockerclientsocket_clientc-assign-your-actual-minikube-ip-to-server_address">2. Open and modify the <code>PLEASE ASSIGN</code> section in <code>docker/client/socket_client.c</code>. (Assign your actual minikube ip to <code>SERVER_ADDRESS</code>):</a></h3>
 <p><img src="docker_kubernetes/kubernetes/../../assets/2025-06-11-12-30-32.png" alt="" /></p>
 <h3 id="3-build-and-run-the-client-container"><a class="header" href="#3-build-and-run-the-client-container">3. Build and run the client container.</a></h3>
 <h2 id="tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing"><a class="header" href="#tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing">Tear down the deployed services and minikube cluster after you finished testing:</a></h2>
