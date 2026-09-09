@@ -17,7 +17,7 @@
 - [Docker Sandboxes](./docker-sandboxes/docker-sandboxes.md)
 - [Setup Environment](./docker-sandboxes/setup.md)
 - [Task](./docker-sandboxes/task.md)
-- [Assignment](./live_migration/assignment.md)
+- [Assignment](./docker-sandboxes/assignment.md)
 
 ---
 # HW2. Docker and Kubernetes
