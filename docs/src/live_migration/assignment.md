@@ -19,7 +19,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0_64k7rplVk?si=ran08XJwlBHGmlFf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### 2. Report (60 points)
-- You have to make a report of ***pdf format*** named `HW1_1_<your_student_id>.pdf`, e.g. `HW1_2_113062566.pdf`.
+- You have to make a report of ***pdf format*** named `HW1_1_<your_student_id>.pdf`, e.g. `HW1_1_113062566.pdf`.
 - The report should include the following items:
     - A. Provide a detailed explanation of each instruction, including the purpose of individual arguments within the commands. **(5 points)**
     - B. Show the performance testing results by `perf` with and without `-enable-kvm` on VM; furthermore compare among them and simply explain the results **(10 points)**
@@ -36,7 +36,7 @@ Submit both the demo video link and the report to eeclass.
 
 
 ## Deadline
-The deadline is set for October 26, 2025 23:59. Late submission is not allowed. 
+The deadline is set for October 25, 2026 23:59. Late submission is not allowed. 
 
 
 If you have any question, feel free to asking through eeclass or email.
