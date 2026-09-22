@@ -4,4 +4,5 @@ language = "en"
 src = "src"
 title = "Virtualization Lab"
 
+[output.html]
 default-theme = "rust"
