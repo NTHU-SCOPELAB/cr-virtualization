@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Helper: Using K8sGPT to help debugging your issue - Virtualization Lab</title>
+        <title>Docker Sandboxes - Virtualization Lab</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../../css/general-e96d0476.css">
-        <link rel="stylesheet" href="../../css/chrome-d279d366.css">
-        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../../";
+            const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-b3a7312e.js";
+            window.path_to_searchindex_js = "../searchindex-b3a7312e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-a8b7351e.js"></script>
+        <script src="../toc-a8b7351e.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -105,7 +105,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">Virtualization Lab</h1>
 
                     <div class="right-buttons">
-                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,144 +174,20 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="helper-using-k8sgpt-to-help-debugging-your-issue"><a class="header" href="#helper-using-k8sgpt-to-help-debugging-your-issue">Helper: Using K8sGPT to help debugging your issue</a></h1>
-<h2 id="this-part-is-not-a-requirement-you-wont-earn-any-extra-points-by-putting-this-into-your-report"><a class="header" href="#this-part-is-not-a-requirement-you-wont-earn-any-extra-points-by-putting-this-into-your-report">THIS PART IS NOT A REQUIREMENT, YOU WON’T EARN ANY EXTRA POINTS BY PUTTING THIS INTO YOUR REPORT.</a></h2>
-<h2 id="0-prerequisite"><a class="header" href="#0-prerequisite">0. Prerequisite</a></h2>
-<ul>
-<li>You need to have a google account that have access to Google AI Studio.</li>
-<li>You can use your local or other model provider as <a href="https://docs.k8sgpt.ai/reference/providers/backend/">backend</a>, but we’ll use the free <code>gemini-2.5-flash</code> API from Google AI Studio as an example here.</li>
-<li>If you care about privacy when running K8sGPT on your PC, you may want to <a href="https://docs.k8sgpt.ai/reference/guidelines/privacy/">check this out</a>.</li>
-</ul>
-<h2 id="1-install-k8sgpt"><a class="header" href="#1-install-k8sgpt">1. Install K8sGPT</a></h2>
-<ul>
-<li>Follow the official instructions <a href="https://docs.k8sgpt.ai/getting-started/installation/">here</a>.</li>
-<li>Or download the binaries directly from the <a href="https://github.com/k8sgpt-ai/k8sgpt/releases/tag/latest">latest release</a>.</li>
-</ul>
-<h2 id="2-generate-api-key-from-google-ai-studio"><a class="header" href="#2-generate-api-key-from-google-ai-studio">2. Generate API Key from Google AI Studio</a></h2>
-<h3 id="a-go-to-google-ai-studio-and-sign-in-with-your-google-account"><a class="header" href="#a-go-to-google-ai-studio-and-sign-in-with-your-google-account">a. Go to <a href="https://studio.google.com/">Google AI Studio</a> and sign in with your Google account.</a></h3>
-<h3 id="b-click-on-get-api-key-button-on-the-bottom-left-corner"><a class="header" href="#b-click-on-get-api-key-button-on-the-bottom-left-corner">b. Click on “Get API Key” button on the bottom left corner.</a></h3>
-<img width="865" height="552" alt="image" src="https://github.com/user-attachments/assets/952895d6-31d6-4222-b951-a972f55dda0b" />
-<h3 id="c-create-api-key"><a class="header" href="#c-create-api-key">c. Create API Key</a></h3>
-<img width="866" height="552" alt="image" src="https://github.com/user-attachments/assets/62558e2e-e5fb-42e6-9311-cb388eabfd8e" />
-<img width="780" height="493" alt="image" src="https://github.com/user-attachments/assets/67d79e09-8462-4984-a0ba-ca0b06456b67" />
-<img width="847" height="534" alt="image" src="https://github.com/user-attachments/assets/21ad748c-e6b1-45fe-9854-41be4bb09fbf" />
-<img width="775" height="442" alt="image" src="https://github.com/user-attachments/assets/154b3340-f3eb-4ac1-af27-a60c8f30f1bb" />
-<h3 id="d-copy-the-generated-api-key-and-save-it-somewhere-safe"><a class="header" href="#d-copy-the-generated-api-key-and-save-it-somewhere-safe">d. Copy the generated API key and save it somewhere safe.</a></h3>
-<img width="864" height="552" alt="image" src="https://github.com/user-attachments/assets/8b2c8139-2388-474f-a189-7c1301993dec" />
-<h2 id="3-setup-k8sgpt-to-use-gemini-api-as-backend"><a class="header" href="#3-setup-k8sgpt-to-use-gemini-api-as-backend">3. Setup K8sGPT to use Gemini API as backend</a></h2>
-<ul>
-<li>Replace <code>YOUR_API_KEY</code> with the API key you generated in step 2.</li>
-</ul>
-<pre><code class="language-bash">k8sgpt auth add --backend google --model gemini-2.5-flash --password "YOUR_API_KEY"
-</code></pre>
-<img width="1460" alt="image" src="https://github.com/user-attachments/assets/d31cc34f-3111-4fca-89cf-bca16ba60515" />
-<h2 id="4-ask-k8sgpt-to-analyze-your-cluster-and-try-to-explain-the-issue"><a class="header" href="#4-ask-k8sgpt-to-analyze-your-cluster-and-try-to-explain-the-issue">4. Ask K8sGPT to analyze your cluster and try to explain the issue:</a></h2>
-<pre><code class="language-bash">k8sgpt analyze --explain --backend google
-</code></pre>
-<ul>
-<li>Result:</li>
-</ul>
-<pre><code>➜  k8s git:(main) ✗ k8sgpt analyze --explain --backend google                                                             
-W1012 01:04:58.380993 3501705 warnings.go:70] v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
-100% |████████████████████████████████████████████████████████████████████████████████████| (13/13, 8 it/min)
-AI Provider: google
-
-0: Deployment default/socket-server()
-- Error: Deployment default/socket-server has 1 replicas in spec but 2 replicas in status because status field is not updated yet after scaling and 0 replicas are available with status running
-Error: Deployment spec (1) and status (2) mismatch, likely due to a delayed status update after scaling. No pods are currently running.
-Solution: 1. Wait a moment; it often self-corrects. 2. If persistent, check `kubectl get pods -l app=socket-server` for pod status. 3. If pods are stuck, `kubectl describe pod &lt;pod-name&gt;` for events/errors.
-
-1: ConfigMap default/kube-root-ca.crt()
-- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
-Error: ConfigMap 'kube-root-ca.crt' exists but no pods in this namespace are configured to use it. It's currently unused.
-Solution: 1. If required, modify pod spec to mount it. 2. If not, delete it: `kubectl delete cm kube-root-ca.crt`.
-
-2: ConfigMap kube-node-lease/kube-root-ca.crt()
-- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
-Error: ConfigMap 'kube-root-ca.crt' exists but no pods in this namespace are configured to use it. It's currently unused.
-Solution: 1. If required, modify pod spec to mount it. 2. If not, delete it: `kubectl delete cm kube-root-ca.crt`.
-
-3: ConfigMap kube-public/cluster-info()
-- Error: ConfigMap cluster-info is not used by any pods in the namespace
-Error: ConfigMap 'cluster-info' exists but no pods are currently configured to use it in the namespace.
-Solution: 1. Verify if 'cluster-info' is still required. 2. If not, delete it: `kubectl delete configmap cluster-info`.
-
-4: ConfigMap kube-public/kube-root-ca.crt()
-- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
-Error: ConfigMap 'kube-root-ca.crt' exists but no pods in this namespace are configured to use it. It's currently unused.
-Solution: 1. If required, modify pod spec to mount it. 2. If not, delete it: `kubectl delete cm kube-root-ca.crt`.
-
-5: ConfigMap kube-system/extension-apiserver-authentication()
-- Error: ConfigMap extension-apiserver-authentication is not used by any pods in the namespace
-Error: ConfigMap 'extension-apiserver-authentication' exists but no pods in the namespace are configured to use it.
-Solution: 1. Confirm if this ConfigMap is truly needed. 2. If not, delete it: `kubectl delete cm extension-apiserver-authentication`.
-
-6: ConfigMap kube-system/kube-apiserver-legacy-service-account-token-tracking()
-- Error: ConfigMap kube-apiserver-legacy-service-account-token-tracking is not used by any pods in the namespace
-Error: ConfigMap `kube-apiserver-legacy-service-account-token-tracking` exists but no pods use it. It's likely obsolete or misconfigured.
-Solution:
-1. Verify if ConfigMap is needed.
-2. If not, delete it: `kubectl delete cm kube-apiserver-legacy-service-account-token-tracking -n &lt;ns&gt;`.
-3. If needed, check pod specs.
-
-7: ConfigMap kube-system/kube-root-ca.crt()
-- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
-Error: ConfigMap 'kube-root-ca.crt' exists but no pods in this namespace are configured to use it. It's currently unused.
-Solution: 1. If required, modify pod spec to mount it. 2. If not, delete it: `kubectl delete cm kube-root-ca.crt`.
-
-8: ConfigMap kube-system/kubeadm-config()
-- Error: ConfigMap kubeadm-config is not used by any pods in the namespace
-Error: The `kubeadm-config` ConfigMap exists but no pods are currently using it.
-Solution: 1. Verify if it's still needed. 2. If not, delete it: `kubectl delete cm kubeadm-config -n kube-system`.
-
-9: ConfigMap kube-system/kubelet-config()
-- Error: ConfigMap kubelet-config is not used by any pods in the namespace
-Error: The ConfigMap named 'kubelet-config' exists in the namespace but no running pods are currently configured to mount or reference it, making it an unused resource.
-Solution: 1. Verify if 'kubelet-config' is still required. 2. If not, delete it: `kubectl delete cm kubelet-config`. 3. If needed, update relevant pod specs to mount it.
-
-10: Service default/socket-server-service()
-- Error: Service has not ready endpoints, pods: [Pod/socket-server-76b4f57897-7vtjl Pod/socket-server-7fdb5cb468-drlg6], expected 2
-Error: The Service can't route traffic because its pods aren't ready or healthy.
-Solution: 1. `kubectl get pods` for status. 2. `kubectl logs &lt;pod-name&gt;` for errors. 3. `kubectl describe pod &lt;pod-name&gt;` for events/readiness. 4. Verify container port matches Service targetPort.
-
-11: Pod default/socket-server-76b4f57897-7vtjl(Deployment/socket-server)
-- Error: Failed to apply default image tag "server-&lt;your student ID&gt;": couldn't parse image name "server-&lt;your student ID&gt;": invalid reference format: repository name (library/server-&lt;your student ID&gt;) must be lowercase
-Error: Image repository names must be lowercase. Your image name `server-&lt;ID&gt;` contains uppercase characters, causing an invalid reference format.
-Solution: 1. Change the image name `server-&lt;ID&gt;` to all lowercase (e.g., `server-&lt;id&gt;`).
-2. Update your Kubernetes manifest (YAML) with the corrected image name.
-
-12: Pod default/socket-server-7fdb5cb468-drlg6(Deployment/socket-server)
-- Error: Container image "server-113062566" is not present with pull policy of Never
-Error: Container image "server-113062566" isn't found on the node; its 'Never' pull policy prevents downloading.
-Solution: 1. Ensure image is built/loaded onto the node. 2. Or, update pod spec's `imagePullPolicy` to `IfNotPresent` to allow pulling from a registry.
-</code></pre>
-<ul>
-<li>Now you can start to look for hints to solve the issue, or feed this information to the LLM you use to provide better context to solve your problem.</li>
-</ul>
-<pre><code class="language-bash"># Before proceeding, make sure you have modified the deployment.yaml accordingly(socket-server container name).
-# In docker/server, build the image inside minikube
-minikube image build -t server-&lt;your student ID&gt; .
-
-# In k8s, after patching the image name in deployment.yaml
-kubectl delete -f service.yaml
-kubectl delete -f deployment.yaml
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-
-# Check if everything is working now
-kubectl get all
-</code></pre>
-<img width="1323" alt="image" src="https://github.com/user-attachments/assets/4d71c69a-b586-492a-b454-09c53909b9a2" />
+                        <h1 id="docker-sandboxes"><a class="header" href="#docker-sandboxes">Docker Sandboxes</a></h1>
+<p>Docker Sandboxes are isolated microVM environments designed to securely execute AI coding agents (such as Claude Code and Copilot CLI). Each sandbox operates with its own dedicated Docker daemon, filesystem, and network stack.</p>
+<p>In this assignment, you will work with Docker Sandboxes and compare them with traditional VMs.</p>
+<p><a href="https://docs.docker.com/ai/sandboxes/#get-started">reference</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../docker_kubernetes/kubernetes/task1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../live_migration/assignment.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../docker_kubernetes/assignment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../docker-sandboxes/setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -321,11 +197,11 @@ kubectl get all
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../docker_kubernetes/kubernetes/task1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../live_migration/assignment.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../docker_kubernetes/assignment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../docker-sandboxes/setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -345,13 +221,13 @@ kubectl get all
         </script>
 
 
-        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../../mark-09e88c2c.min.js"></script>
-        <script src="../../searcher-09f2665d.js"></script>
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
 
-        <script src="../../clipboard-1626706a.min.js"></script>
-        <script src="../../highlight-abc7f01d.js"></script>
-        <script src="../../book-609e4cb8.js"></script>
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 
