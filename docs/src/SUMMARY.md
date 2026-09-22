@@ -1,6 +1,6 @@
 # Summary
 
-# HW1-1. Virtual Machine Live Migration
+# HW1-1. Virtual Machine Live Migration (80%)
 - [Objective](./live_migration/objective.md)
 - [Setup Environment(Guest 1 / Guest 2)](./live_migration/setup-environment.md)
     - [VMWare Workstation](./live_migration/setup-environment/vmware-workstation.md)
@@ -13,7 +13,7 @@
 - [Assignment](./live_migration/assignment.md)
 
 ---
-# HW1-2. Docker Sandboxes
+# HW1-2. Docker Sandboxes (20%)
 - [Docker Sandboxes](./docker-sandboxes/docker-sandboxes.md)
 - [Setup Environment](./docker-sandboxes/setup.md)
 - [Task](./docker-sandboxes/task.md)
