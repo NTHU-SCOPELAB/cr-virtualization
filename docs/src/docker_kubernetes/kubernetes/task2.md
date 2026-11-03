@@ -31,6 +31,7 @@ kubectl exec -it test-pod -c test-client -- wget -q -O - http://localhost:8888
 <div class="warning">
     <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
 </div>
+![](../../assets/k8s_pod_from_podman.png)
 
 ## 2. Answer the following questions and include the answers in your report:
 - What is Kubernetes? Why do we need it? ***(5 points)***

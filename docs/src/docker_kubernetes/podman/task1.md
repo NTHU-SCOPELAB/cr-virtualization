@@ -13,7 +13,10 @@ podman build -t server-<your_student_id> .
 cd path/to/client
 podman build -t client-<your_student_id> .
 ```
-如果出現Error: creating build container: short-name "gcc:15" did not resolve to an alias and no unqualified-search registries are defined in "/etc/containers/registries.conf"，可以將Dockerfile的FROM改成"docker.io/library/gcc:15"
+> **Troubleshooting :**
+> If you encounter the error `Error: creating build container: short-name "gcc:15" did not resolve to an alias...`, it means Podman's default registry is not configured. You can fix this by changing the `FROM` instruction in your Dockerfile to use the full path: `FROM docker.io/library/gcc:15`
+
+
 You can use the following command to check images you've built:
 ```bash
 podman images
@@ -24,7 +27,7 @@ podman images
 You need to submit the screenshot of the list of your images. <strong>(5 points)</strong>
 </div>
 
-![](../../assets/2025-06-10-23-57-49.png)
+![](../../assets/podman_images.png)
 
 
 ### 3. Launch the server container first, and then launch the client container:
@@ -42,5 +45,5 @@ The command `podman run` will create the container instance with the image and e
 You need to submit the screenshot of the output of the server and client containers. <strong>(5 points)</strong>
 </div>
 
-![](../../assets/2025-06-10-23-58-42.png)
-![](../../assets/2025-06-10-23-59-02.png)
+![](../../assets/podman_hello_from_server.png)
+![](../../assets/podman_hello_from_client.png)

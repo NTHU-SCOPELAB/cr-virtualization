@@ -1,6 +1,6 @@
 # Task 1: Launching K8s and deploy our containers
 
-## Launch your Kubernetes cluster
+## Launching Kubernetes and Deploying Containers
 ### 1. Start the Kubernetes cluster
 ```bash
 minikube start --driver=podman
@@ -11,10 +11,9 @@ minikube start --driver=podman
 podman save -o server.tar localhost/server-<your_student_id>:latest
 minikube image load server.tar
 ```
-
-
-## Modify deployment.yaml and apply configurations:
-Enter the k8s folder, open deployment.yaml, and modify the image to match your student ID.
+## Deploy the Application
+### 1. Modify the deployment configuration
+Enter the k8s folder, open deployment.yaml, and modify the image to match your student ID. You can run `minikube image ls` to verify the exact image name stored inside Minikube.
 ```YAML
 containers:
       - name: socket-server

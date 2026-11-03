@@ -31,7 +31,7 @@ podman network ls
     <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
 </div>
 
-![](../../assets/2025-06-11-00-10-57.png)
+![](../../assets/podma_network.png)
 
 ### 5. You can inspect more about the details of the `box-bridge` network:
 ```bash
@@ -41,7 +41,7 @@ podman network inspect box-bridge
     <strong>Note:</strong> You need to include the screenshot of the command output above in your report. Points WILL BE DEDUCTED if any output text get cropped out. <strong>(5 points)</strong>
 </div>
 
-![](../../assets/2025-06-11-00-11-22.png)
+![](../../assets/podman_network_box_bridge.png)
 
 ### 6. Log into `box1` and try to ping `box2`:
 ```bash

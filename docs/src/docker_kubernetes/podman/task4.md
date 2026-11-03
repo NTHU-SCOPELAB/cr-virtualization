@@ -26,3 +26,4 @@ podman exec -it test-client wget -q -O - http://localhost:8888
     <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
 </div>
 
+![](../../assets/podman_pod.png)
