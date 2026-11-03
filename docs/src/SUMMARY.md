@@ -20,14 +20,17 @@
 - [Assignment](./docker-sandboxes/assignment.md)
 
 ---
-# HW2. Docker and Kubernetes
+# HW2. Podman and Kubernetes
 - [Objective](./docker_kubernetes/objective.md)
 - [Setup Environment](./docker_kubernetes/setup-environment.md)
-- [Docker](./docker_kubernetes/docker.md)
-    - [Task 1: Building the images](./docker_kubernetes/docker/task1.md)
-    - [Task 2: Creating bridge](./docker_kubernetes/docker/task2.md)
-    - [Task 3: Creating volume](./docker_kubernetes/docker/task3.md)
+- [Podman](./docker_kubernetes/podman.md)
+    - [Task 1: Building the images](./docker_kubernetes/podman/task1.md)
+    - [Task 2: Creating bridge](./docker_kubernetes/podman/task2.md)
+    - [Task 3: Creating volume](./docker_kubernetes/podman/task3.md)
+    - [Task 4: Creating Pod](./docker_kubernetes/podman/task4.md)
+
 - [Kubernetes](./docker_kubernetes/kubernetes.md)
     - [Task 1: Launching K8s and deploy our containers](./docker_kubernetes/kubernetes/task1.md)
+    - [Task 2: Deploy our pods ](./docker_kubernetes/kubernetes/task2.md)
     - [Helper: Using K8sGPT to help debugging your issue](./docker_kubernetes/kubernetes/helper.md)
 - [Assignment](./docker_kubernetes/assignment.md)

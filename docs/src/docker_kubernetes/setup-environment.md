@@ -22,7 +22,7 @@ k8s
 ```
 
 In addition, you must install the following programs on your computer:
-- [Docker](https://docs.docker.com/get-started/get-docker/): A tool that is used to automate the deployment of applications.
+- [Podman](https://podman.io/docs): A daemonless tool used to develop, manage, and run containers.
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/): Local Kubernetes, focusing on making it easy to learn for Kubernetes.
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): Command line tool for communicating with a control plane.
 

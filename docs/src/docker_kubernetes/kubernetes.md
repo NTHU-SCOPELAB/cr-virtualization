@@ -11,7 +11,7 @@ In this task, you're required to create services using Kubernetes. We will use t
 - The difference between `ClusterIP`, `NodePort`, and `LoadBalancer`.
 
 Once you have:
-- installed Docker
+- installed Podman
 - installed Minikube
 - installed Kubectl（Check the version to verify if it's installed)
 - and downloaded the required files
