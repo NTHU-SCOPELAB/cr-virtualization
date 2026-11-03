@@ -7,13 +7,14 @@ minikube start --driver=podman
 ```
 
 ### 2. Export the Podman image and load it into Minikube
+>Since the image prefix  or exact name might vary across different devices and environments, please verify your exact image name.
 ```bash
 podman save -o server.tar localhost/server-<your_student_id>:latest
 minikube image load server.tar
 ```
 ## Deploy the Application
 ### 1. Modify the deployment configuration
-Enter the k8s folder, open deployment.yaml, and modify the image to match your student ID. You can run `minikube image ls` to verify the exact image name stored inside Minikube.
+Enter the k8s folder, open deployment.yaml, and modify the image to match your student ID. 
 ```YAML
 containers:
       - name: socket-server
