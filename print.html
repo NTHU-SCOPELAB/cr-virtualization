@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-014a8a1b.js";
+            window.path_to_searchindex_js = "searchindex-e568b373.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-843a4471.js"></script>
+        <script src="toc-e91f6c6b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -503,19 +503,9 @@ python3 CNN.py
 <h1 id="containerized-socket-communication-using-docker-and-kubernetes"><a class="header" href="#containerized-socket-communication-using-docker-and-kubernetes">Containerized Socket Communication: Using Docker and Kubernetes</a></h1>
 <h3 id="this-assignment-has-two-phases"><a class="header" href="#this-assignment-has-two-phases">This assignment has two phases:</a></h3>
 <ul>
-<li>The first phase requires you to explore how to use Docker.</li>
+<li>The first phase requires you to explore how to use Podman.</li>
 <li>The second phase is to create services using Kubernetes. Each phase has several tasks.</li>
 </ul>
-<style>
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20px;
-}
-</style>
-<img src="assets/k8slogo.svg" alt="Kubernetes Logo" height="100">
-<img src="assets/docker-logo-blue.png" alt="Docker Logo" height="100">
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="setup-environment-1"><a class="header" href="#setup-environment-1">Setup Environment</a></h1>
 <h2 id="prequisite"><a class="header" href="#prequisite">Prequisite</a></h2>
@@ -537,16 +527,16 @@ k8s
 </code></pre>
 <p>In addition, you must install the following programs on your computer:</p>
 <ul>
-<li><a href="https://docs.docker.com/get-started/get-docker/">Docker</a>: A tool that is used to automate the deployment of applications.</li>
+<li><a href="https://podman.io/docs">Podman</a>: A daemonless tool used to develop, manage, and run containers.</li>
 <li><a href="https://minikube.sigs.k8s.io/docs/start/">Minikube</a>: Local Kubernetes, focusing on making it easy to learn for Kubernetes.</li>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">Kubectl</a>: Command line tool for communicating with a control plane.</li>
 </ul>
 <p>There are different installation processes dependending on your operating system. You must have <em><strong>root permissions</strong></em> in your system.</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
-<h3 id="in-this-task-you-are-required-to-create-two-docker-containers-one-container-runs-the-server-and-the-other-container-runs-the-client-allowing-the-client-to-communicate-with-the-server-and-transmit-messages"><a class="header" href="#in-this-task-you-are-required-to-create-two-docker-containers-one-container-runs-the-server-and-the-other-container-runs-the-client-allowing-the-client-to-communicate-with-the-server-and-transmit-messages">In this task, you are required to create two Docker containers. One container runs the server, and the other container runs the client, allowing the client to communicate with the server and transmit messages.</a></h3>
+<h1 id="podman"><a class="header" href="#podman">Podman</a></h1>
+<h3 id="in-this-task-you-are-required-to-create-two-podman-containers-one-container-runs-the-server-and-the-other-container-runs-the-client-allowing-the-client-to-communicate-with-the-server-and-transmit-messages"><a class="header" href="#in-this-task-you-are-required-to-create-two-podman-containers-one-container-runs-the-server-and-the-other-container-runs-the-client-allowing-the-client-to-communicate-with-the-server-and-transmit-messages">In this task, you are required to create two Podman containers. One container runs the server, and the other container runs the client, allowing the client to communicate with the server and transmit messages.</a></h3>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-10-23-50-12.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-10-23-50-12.png" alt=""></span></label></p>
-<h3 id="once-you-have-installed-docker-and-downloaded-the-required-files-you-can-proceed-with-the-following-steps"><a class="header" href="#once-you-have-installed-docker-and-downloaded-the-required-files-you-can-proceed-with-the-following-steps">Once you have installed Docker and downloaded the required files, you can proceed with the following steps.</a></h3>
+<h3 id="once-you-have-installed-podman-and-downloaded-the-required-files-you-can-proceed-with-the-following-steps"><a class="header" href="#once-you-have-installed-podman-and-downloaded-the-required-files-you-can-proceed-with-the-following-steps">Once you have installed Podman and downloaded the required files, you can proceed with the following steps.</a></h3>
 <h3 id="note-in-this-section-you-are-required-to-take-screenshots-of-the-command-output-to-include-in-your-report-when-you-see-something-like-this"><a class="header" href="#note-in-this-section-you-are-required-to-take-screenshots-of-the-command-output-to-include-in-your-report-when-you-see-something-like-this">Note: In this section, you are required to take screenshots of the command output to include in your report when you see something like this:</a></h3>
 <div class="warning">
     <strong>Note:</strong> This is an example of what you would see when you are required to take screenshot and include in your report. <strong>(0 points)</strong>
@@ -558,67 +548,72 @@ k8s
 <img width="750" height="552" alt="image" src="https://github.com/user-attachments/assets/25129b2c-e607-4f17-86ad-62384b6372f2" />
 <h3 id="2-build-the-image-with-the-dockerfile"><a class="header" href="#2-build-the-image-with-the-dockerfile">2. Build the image with the Dockerfile</a></h3>
 <pre><code class="language-bash">cd path/to/server
-docker build -t server-&lt;your_student_id&gt;
-cd path/to/client
-docker build -t client-&lt;your_student_id&gt;
+podman build -t server-&lt;your_student_id&gt; .
 </code></pre>
+<pre><code class="language-bash">cd path/to/client
+podman build -t client-&lt;your_student_id&gt; .
+</code></pre>
+<blockquote>
+<p><strong>Troubleshooting :</strong>
+If you encounter the error <code>Error: creating build container: short-name "gcc:15" did not resolve to an alias...</code>, it means Podman’s default registry is not configured. You can fix this by changing the <code>FROM</code> instruction in your Dockerfile to use the full path: <code>FROM docker.io/library/gcc:15</code></p>
+</blockquote>
 <p>You can use the following command to check images you’ve built:</p>
-<pre><code class="language-bash">docker images
+<pre><code class="language-bash">podman images
 </code></pre>
 <div class="warning">
 You need to submit the screenshot of the list of your images. <strong>(5 points)</strong>
 </div>
 
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-10-23-57-49.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-10-23-57-49.png" alt=""></span></label></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/podman_images.png" alt=""><span class="img-wrapper"><img src="assets/podman_images.png" alt=""></span></label></p>
 <h3 id="3-launch-the-server-container-first-and-then-launch-the-client-container"><a class="header" href="#3-launch-the-server-container-first-and-then-launch-the-client-container">3. Launch the server container first, and then launch the client container:</a></h3>
-<pre><code class="language-bash">docker run -it --rm --network host \
+<pre><code class="language-bash">podman run -it --rm --network host \
     --name server \
     server-&lt;your_student_id&gt;
-docker run -it --rm --network host \
+podman run -it --rm --network host \
     --name client \
     client-&lt;your_student_id&gt;
 </code></pre>
-<p>The command <code>docker run</code> will create the container instance with the image and execute the container.</p>
+<p>The command <code>podman run</code> will create the container instance with the image and execute the container.</p>
 <div class="warning">
 You need to submit the screenshot of the output of the server and client containers. <strong>(5 points)</strong>
 </div>
 
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-10-23-58-42.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-10-23-58-42.png" alt=""></span></label>
-<label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-10-23-59-02.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-10-23-59-02.png" alt=""></span></label></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/podman_hello_from_server.png" alt=""><span class="img-wrapper"><img src="assets/podman_hello_from_server.png" alt=""></span></label>
+<label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/podman_hello_from_client.png" alt=""><span class="img-wrapper"><img src="assets/podman_hello_from_client.png" alt=""></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="task-2-creating-bridge"><a class="header" href="#task-2-creating-bridge">Task 2: Creating bridge</a></h1>
 <h3 id="in-this-task-you-are-required-to-create-a-bridge-to-connect-two-container-not-related-to-task-1"><a class="header" href="#in-this-task-you-are-required-to-create-a-bridge-to-connect-two-container-not-related-to-task-1">In this task, you are required to create a bridge to connect two container. (<em><strong>not related to Task 1</strong></em>)</a></h3>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-11-00-04-36.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-11-00-04-36.png" alt=""></span></label></p>
 <h3 id="1-create-2-containers-using-the-following-commands"><a class="header" href="#1-create-2-containers-using-the-following-commands">1. Create 2 containers using the following commands:</a></h3>
-<pre><code class="language-bash">docker container run -d --rm --name box1 busybox /bin/sh -c "while true; do sleep 3600; done"
+<pre><code class="language-bash">podman container run -d --rm --name box1 --network bridge --cap-add=NET_RAW busybox /bin/sh -c "while true; do sleep 3600; done"
 </code></pre>
-<pre><code class="language-bash">docker container run -d --rm --name box2 busybox /bin/sh -c "while true; do sleep 3600; done"
+<pre><code class="language-bash">podman container run -d --rm --name box2 --network bridge --cap-add=NET_RAW busybox /bin/sh -c "while true; do sleep 3600; done"
 </code></pre>
 <h3 id="2-create-a-network-bridge"><a class="header" href="#2-create-a-network-bridge">2. Create a network bridge:</a></h3>
-<pre><code class="language-bash">docker network create box-bridge
+<pre><code class="language-bash">podman network create box-bridge
 </code></pre>
 <h3 id="3-connecting-two-running-containers-to-the-network-bridge"><a class="header" href="#3-connecting-two-running-containers-to-the-network-bridge">3. Connecting two running containers to the network bridge:</a></h3>
-<pre><code class="language-bash">docker network connect box-bridge box1
-docker network connect box-bridge box2
+<pre><code class="language-bash">podman network connect box-bridge box1
+podman network connect box-bridge box2
 </code></pre>
 <h3 id="4-you-can-use-the-following-command-to-list-docker-networks"><a class="header" href="#4-you-can-use-the-following-command-to-list-docker-networks">4. You can use the following command to list docker networks:</a></h3>
-<pre><code class="language-bash">docker network ls
+<pre><code class="language-bash">podman network ls
 </code></pre>
 <div class="warning">
     <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
 </div>
 
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-11-00-10-57.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-11-00-10-57.png" alt=""></span></label></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/podma_network.png" alt=""><span class="img-wrapper"><img src="assets/podma_network.png" alt=""></span></label></p>
 <h3 id="5-you-can-inspect-more-about-the-details-of-the-box-bridge-network"><a class="header" href="#5-you-can-inspect-more-about-the-details-of-the-box-bridge-network">5. You can inspect more about the details of the <code>box-bridge</code> network:</a></h3>
-<pre><code class="language-bash">docker network inspect box-bridge
+<pre><code class="language-bash">podman network inspect box-bridge
 </code></pre>
 <div class="warning">
     <strong>Note:</strong> You need to include the screenshot of the command output above in your report. Points WILL BE DEDUCTED if any output text get cropped out. <strong>(5 points)</strong>
 </div>
 
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-11-00-11-22.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-11-00-11-22.png" alt=""></span></label></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/podman_network_box_bridge.png" alt=""><span class="img-wrapper"><img src="assets/podman_network_box_bridge.png" alt=""></span></label></p>
 <h3 id="6-log-into-box1-and-try-to-ping-box2"><a class="header" href="#6-log-into-box1-and-try-to-ping-box2">6. Log into <code>box1</code> and try to ping <code>box2</code>:</a></h3>
-<pre><code class="language-bash">docker exec -it box1 sh
+<pre><code class="language-bash">podman exec -it box1 sh
 ping box2
 </code></pre>
 <div class="warning">
@@ -645,9 +640,29 @@ ping box2
 
 <h3 id="3-answer-the-following-questions-20-points"><a class="header" href="#3-answer-the-following-questions-20-points">3. Answer the following questions: (20 points)</a></h3>
 <ul>
-<li>Please explain the difference between Docker Container and Virtual Machine. *<strong>(10 points)</strong></li>
-<li>Docker is more unsafe than virtual machine, please explain why and what’s causing this issue. <em><strong>(10 points)</strong></em></li>
+<li>Please explain the difference between Container and Virtual Machine. *<strong>(5 points)</strong></li>
+<li>Container is more unsafe than virtual machine, please explain why and what’s causing this issue. <em><strong>(10 points)</strong></em></li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="task-4-creating-a-pod"><a class="header" href="#task-4-creating-a-pod">Task 4: Creating a Pod</a></h1>
+<h3 id="in-this-task-you-are-required-to-create-a-podman-pod-to-group-two-containers-together-allowing-them-to-share-the-same-network-namespace-and-communicate-directly-via-localhost"><a class="header" href="#in-this-task-you-are-required-to-create-a-podman-pod-to-group-two-containers-together-allowing-them-to-share-the-same-network-namespace-and-communicate-directly-via-localhost">In this task, you are required to create a Podman Pod to group two containers together, allowing them to share the same network namespace and communicate directly via localhost.</a></h3>
+<h3 id="1-create-a-podman-pod-and-expose-port-8888"><a class="header" href="#1-create-a-podman-pod-and-expose-port-8888">1. Create a Podman Pod and expose port 8888:</a></h3>
+<pre><code class="language-bash">podman pod create --name test-pod -p 8888:8888
+</code></pre>
+<h3 id="2-start-the-server-container-inside-the-pod"><a class="header" href="#2-start-the-server-container-inside-the-pod">2. Start the server container inside the Pod:</a></h3>
+<pre><code class="language-bash">podman run -d --pod test-pod --name test-server busybox sh -c "echo 'Hello from Pod Server!' &gt; index.html &amp;&amp; httpd -f -p 8888"
+</code></pre>
+<h3 id="3-start-the-client-container-inside-the-same-pod"><a class="header" href="#3-start-the-client-container-inside-the-same-pod">3. Start the client container inside the same Pod:</a></h3>
+<pre><code class="language-bash">podman run -d --pod test-pod --name test-client busybox sleep 3600
+</code></pre>
+<h3 id="4-verify-the-localhost-connection-between-the-containers"><a class="header" href="#4-verify-the-localhost-connection-between-the-containers">4. Verify the localhost connection between the containers:</a></h3>
+<pre><code class="language-bash">podman exec -it test-client wget -q -O - http://localhost:8888
+</code></pre>
+<div class="warning">
+    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
+</div>
+
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/podman_pod.png" alt=""><span class="img-wrapper"><img src="assets/podman_pod.png" alt=""></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h1>
 <h3 id="description"><a class="header" href="#description">Description</a></h3>
@@ -661,7 +676,7 @@ ping box2
 </ul>
 <p>Once you have:</p>
 <ul>
-<li>installed Docker</li>
+<li>installed Podman</li>
 <li>installed Minikube</li>
 <li>installed Kubectl（Check the version to verify if it’s installed)</li>
 <li>and downloaded the required files</li>
@@ -669,40 +684,39 @@ ping box2
 <p>you can proceed with the following steps.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="task-1-launching-k8s-and-deploy-our-containers"><a class="header" href="#task-1-launching-k8s-and-deploy-our-containers">Task 1: Launching K8s and deploy our containers</a></h1>
-<h2 id="launch-your-kubernetes-cluster"><a class="header" href="#launch-your-kubernetes-cluster">Launch your Kubernetes cluster</a></h2>
+<h2 id="launching-kubernetes-and-deploying-containers"><a class="header" href="#launching-kubernetes-and-deploying-containers">Launching Kubernetes and Deploying Containers</a></h2>
 <h3 id="1-start-the-kubernetes-cluster"><a class="header" href="#1-start-the-kubernetes-cluster">1. Start the Kubernetes cluster</a></h3>
-<pre><code class="language-bash">minikube start
+<pre><code class="language-bash">minikube start --driver=podman
 </code></pre>
-<h3 id="2-get-the-instructions-to-point-your-docker-client-to-point-to-the-minikube-docker-daemon"><a class="header" href="#2-get-the-instructions-to-point-your-docker-client-to-point-to-the-minikube-docker-daemon">2. Get the instructions to point your docker client to point to the minikube docker daemon</a></h3>
-<pre><code class="language-bash">minikube docker-env
+<h3 id="2-export-the-podman-image-and-load-it-into-minikube"><a class="header" href="#2-export-the-podman-image-and-load-it-into-minikube">2. Export the Podman image and load it into Minikube</a></h3>
+<blockquote>
+<p>Since the image prefix  or exact name might vary across different devices and environments, please verify your exact image name.</p>
+</blockquote>
+<pre><code class="language-bash">podman save -o server.tar localhost/server-&lt;your_student_id&gt;:latest
+minikube image load server.tar
 </code></pre>
-<h3 id="3-check-the-status-of-your-minikube-deployment"><a class="header" href="#3-check-the-status-of-your-minikube-deployment">3. Check the status of your minikube deployment</a></h3>
-<pre><code class="language-bash">minikube status
+<h2 id="deploy-the-application"><a class="header" href="#deploy-the-application">Deploy the Application</a></h2>
+<h3 id="1-modify-the-deployment-configuration"><a class="header" href="#1-modify-the-deployment-configuration">1. Modify the deployment configuration</a></h3>
+<p>Enter the k8s folder, open deployment.yaml, and modify the image to match your student ID.</p>
+<pre><code class="language-YAML">containers:
+      - name: socket-server
+        image: localhost/server-&lt;your_student_id&gt;:latest
+        imagePullPolicy: Never
 </code></pre>
-<img width="387" height="287" alt="image" src="https://github.com/user-attachments/assets/a66162be-f31d-41fb-a3c5-b93135f2848f" />
-<h2 id="deploy-the-containers-into-the-cluster"><a class="header" href="#deploy-the-containers-into-the-cluster">Deploy the containers into the cluster</a></h2>
-<h3 id="1-enter-the-k8s-folder-modify-the-files-as-required-and-input-the-following-command"><a class="header" href="#1-enter-the-k8s-folder-modify-the-files-as-required-and-input-the-following-command">1. Enter the k8s folder, modify the files as required and input the following command:</a></h3>
+<h3 id="2-apply-configurations"><a class="header" href="#2-apply-configurations">2. apply configurations</a></h3>
 <pre><code class="language-bash">kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 </code></pre>
-<h3 id="2-check-the-status-of-your-deployment"><a class="header" href="#2-check-the-status-of-your-deployment">2. Check the status of your deployment</a></h3>
+<h3 id="3-check-the-status-of-your-deployment"><a class="header" href="#3-check-the-status-of-your-deployment">3. Check the status of your deployment</a></h3>
 <pre><code class="language-bash">kubectl get pods
 kubectl get deployment
 kubectl get services
 </code></pre>
 <div class="warning">
-    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(10 points)</strong>
+    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
 </div>
 
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-11-12-37-16.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-11-12-37-16.png" alt=""></span></label></p>
-<h3 id="3-answer-the-following-questions-and-include-the-answers-in-your-report"><a class="header" href="#3-answer-the-following-questions-and-include-the-answers-in-your-report">3. Answer the following questions and include the answers in your report:</a></h3>
-<ul>
-<li>What is Kubernetes? Why do we need it? <em><strong>(5 points)</strong></em></li>
-<li>Please explain the concepts of <code>Deployment</code>, <code>Service</code> and <code>Pod</code>. <em><strong>(5 points)</strong></em></li>
-<li>Why k8s use pod to manipulate the application instead of the container. <em><strong>(5 points)</strong></em></li>
-<li>What is <code>Replica Set</code> in Kubernetes? <em><strong>(5 points)</strong></em></li>
-<li>Why can the client successfully communicate through port 30080 when the server is listening on port 8888? <em><strong>(10 points)</strong></em></li>
-</ul>
 <h2 id="optional-check-if-your-container-is-running-correctly-on-the-minikube"><a class="header" href="#optional-check-if-your-container-is-running-correctly-on-the-minikube">(Optional) Check if your container is running correctly on the minikube</a></h2>
 <h3 id="1-get-the-ip-address-of-the-minikube"><a class="header" href="#1-get-the-ip-address-of-the-minikube">1. Get the ip address of the minikube:</a></h3>
 <pre><code class="language-bash">minikube ip
@@ -710,9 +724,41 @@ kubectl get services
 <h3 id="2-open-and-modify-the-please-assign-section-in-dockerclientsocket_clientc-assign-your-actual-minikube-ip-to-server_address"><a class="header" href="#2-open-and-modify-the-please-assign-section-in-dockerclientsocket_clientc-assign-your-actual-minikube-ip-to-server_address">2. Open and modify the <code>PLEASE ASSIGN</code> section in <code>docker/client/socket_client.c</code>. (Assign your actual minikube ip to <code>SERVER_ADDRESS</code>):</a></h3>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="assets/2025-06-11-12-30-32.png" alt=""><span class="img-wrapper"><img src="assets/2025-06-11-12-30-32.png" alt=""></span></label></p>
 <h3 id="3-build-and-run-the-client-container"><a class="header" href="#3-build-and-run-the-client-container">3. Build and run the client container.</a></h3>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="task-2-deploy-our-pods"><a class="header" href="#task-2-deploy-our-pods">Task 2: Deploy our Pods</a></h1>
+<h2 id="1-deploy-the-generated-pod-into-the-cluster"><a class="header" href="#1-deploy-the-generated-pod-into-the-cluster">1. Deploy the generated Pod into the cluster</a></h2>
+<h3 id="1-export-podman-pod-to-kubernetes-yaml"><a class="header" href="#1-export-podman-pod-to-kubernetes-yaml">1. Export Podman Pod to Kubernetes YAML</a></h3>
+<pre><code class="language-bash">podman generate kube test-pod &gt; test-pod.yaml
+</code></pre>
+<h3 id="2-remove-local-podman-pod-to-free-up-ports"><a class="header" href="#2-remove-local-podman-pod-to-free-up-ports">2. Remove Local Podman Pod to Free Up Ports</a></h3>
+<pre><code class="language-bash">podman pod rm -f test-pod
+</code></pre>
+<h3 id="3-apply-yaml-and-deploy-to-minikube"><a class="header" href="#3-apply-yaml-and-deploy-to-minikube">3. Apply YAML and Deploy to Minikube</a></h3>
+<pre><code class="language-bash">kubectl apply -f test-pod.yaml
+</code></pre>
+<h3 id="4-check-the-pod-status-in-kubernetes"><a class="header" href="#4-check-the-pod-status-in-kubernetes">4. Check the Pod Status in Kubernetes</a></h3>
+<pre><code class="language-bash">kubectl get pods
+</code></pre>
+<h3 id="5-test-inter-container-communication-via-localhost"><a class="header" href="#5-test-inter-container-communication-via-localhost">5. Test Inter-Container Communication via Localhost</a></h3>
+<pre><code class="language-bash">kubectl exec -it test-pod -c test-client -- wget -q -O - http://localhost:8888
+</code></pre>
+<div class="warning">
+    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
+</div>
+
+![](../../assets/k8s_pod_from_podman.png)
+<h2 id="2-answer-the-following-questions-and-include-the-answers-in-your-report"><a class="header" href="#2-answer-the-following-questions-and-include-the-answers-in-your-report">2. Answer the following questions and include the answers in your report:</a></h2>
+<ul>
+<li>What is Kubernetes? Why do we need it? <em><strong>(5 points)</strong></em></li>
+<li>Please explain the concepts of <code>Deployment</code>, <code>Service</code> and <code>Pod</code>. <em><strong>(5 points)</strong></em></li>
+<li>Why k8s use pod to manipulate the application instead of the container. <em><strong>(5 points)</strong></em></li>
+<li>What is <code>Replica Set</code> in Kubernetes? <em><strong>(5 points)</strong></em></li>
+<li>Why can the client successfully communicate through port 30080 when the server is listening on port 8888? <em><strong>(10 points)</strong></em></li>
+</ul>
 <h2 id="tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing"><a class="header" href="#tear-down-the-deployed-services-and-minikube-cluster-after-you-finished-testing">Tear down the deployed services and minikube cluster after you finished testing:</a></h2>
 <pre><code class="language-bash">kubectl delete -f service.yaml
 kubectl delete -f deployment.yaml
+kubectl delete -f test-pod.yaml
 minikube stop
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -855,7 +901,7 @@ kubectl get all
 <h2 id="submission-2"><a class="header" href="#submission-2">Submission</a></h2>
 <p>Submit the report to eeclass.</p>
 <h2 id="deadline-2"><a class="header" href="#deadline-2">Deadline</a></h2>
-<p>The deadline is set for 2026 / 11 / 29. Late submission is not allowed.</p>
+<p>The deadline is set for December 6, 2026. Late submission is not allowed.</p>
 <p>If you have any question, feel free to asking through eeclass or email.</p>
 
                     </main>
