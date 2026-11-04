@@ -10,7 +10,7 @@ Submit the report to eeclass.
 
 
 ## Deadline
-The deadline is set for 2026 / 11 / 29. Late submission is not allowed. 
+The deadline is set for December 6, 2026. Late submission is not allowed. 
 
 
 If you have any question, feel free to asking through eeclass or email.

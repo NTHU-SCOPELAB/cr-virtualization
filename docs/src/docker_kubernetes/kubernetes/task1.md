@@ -1,48 +1,43 @@
 # Task 1: Launching K8s and deploy our containers
 
-## Launch your Kubernetes cluster
+## Launching Kubernetes and Deploying Containers
 ### 1. Start the Kubernetes cluster
 ```bash
-minikube start
+minikube start --driver=podman
 ```
 
-### 2. Get the instructions to point your docker client to point to the minikube docker daemon
+### 2. Export the Podman image and load it into Minikube
+>Since the image prefix  or exact name might vary across different devices and environments, please verify your exact image name.
 ```bash
-minikube docker-env
+podman save -o server.tar localhost/server-<your_student_id>:latest
+minikube image load server.tar
 ```
-
-### 3. Check the status of your minikube deployment
-```bash
-minikube status
+## Deploy the Application
+### 1. Modify the deployment configuration
+Enter the k8s folder, open deployment.yaml, and modify the image to match your student ID. 
+```YAML
+containers:
+      - name: socket-server
+        image: localhost/server-<your_student_id>:latest
+        imagePullPolicy: Never
 ```
-<img width="387" height="287" alt="image" src="https://github.com/user-attachments/assets/a66162be-f31d-41fb-a3c5-b93135f2848f" />
-
-
-## Deploy the containers into the cluster
-### 1. Enter the k8s folder, modify the files as required and input the following command:
+### 2. apply configurations       
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 
-### 2. Check the status of your deployment
+### 3. Check the status of your deployment
 ```bash
 kubectl get pods
 kubectl get deployment
 kubectl get services
 ```
 <div class="warning">
-    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(10 points)</strong>
+    <strong>Note:</strong> You need to include the screenshot of the command output above in your report. <strong>(5 points)</strong>
 </div>
 
 ![](../../assets/2025-06-11-12-37-16.png)
-
-### 3. Answer the following questions and include the answers in your report:
-- What is Kubernetes? Why do we need it? ***(5 points)***
-- Please explain the concepts of `Deployment`, `Service` and `Pod`. ***(5 points)***
-- Why k8s use pod to manipulate the application instead of the container. ***(5 points)***
-- What is `Replica Set` in Kubernetes? ***(5 points)***
-- Why can the client successfully communicate through port 30080 when the server is listening on port 8888? ***(10 points)***
 
 ## (Optional) Check if your container is running correctly on the minikube
 ### 1. Get the ip address of the minikube:
@@ -55,9 +50,3 @@ minikube ip
 
 ### 3. Build and run the client container.
 
-## Tear down the deployed services and minikube cluster after you finished testing:
-```bash
-kubectl delete -f service.yaml
-kubectl delete -f deployment.yaml
-minikube stop
-```
